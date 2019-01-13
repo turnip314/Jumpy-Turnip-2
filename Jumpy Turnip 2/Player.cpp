@@ -409,7 +409,7 @@ void Player::initializeStats(Types::Players thisType, int playerUpgrades[12], in
 		upgrades[i] = playerUpgrades[i];
 	}
 
-	// initializes sprite
+	// initializes sprite by player type
 	if (type == Types::Players::Normie)
 	{
 		sprite.setTexture(*textureManager->getTexture(Textures::NormieSide));
