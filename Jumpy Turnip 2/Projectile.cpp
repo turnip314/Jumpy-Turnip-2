@@ -158,7 +158,16 @@ void Projectile::setStats(Vector2f newVelocity, int newRadius, int newDamage, in
 	speed = Math::magnitude(velocity);
 	radius = newRadius;
 	damage = newDamage;
-	pierce = newPierce;
+	
+	if (splitNum >= 0)
+	{
+		splitNum += pierce - 1;
+		newPierce = 1;
+	}
+	else
+	{
+		pierce = newPierce;
+	}
 	lifespan = newLifespan;
 }
 
