@@ -1501,7 +1501,6 @@ void Player::geoShoot(Vector2i pos)
 		if (Math::random() < 0.4)
 		{
 			shot->setSplit(5);
-			thisPierce = 1;
 		}
 	}
 	if (upgrades[10] == 2)
