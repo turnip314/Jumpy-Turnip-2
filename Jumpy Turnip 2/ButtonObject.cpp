@@ -33,7 +33,7 @@ void ButtonObject::update(Time dt)
 
 void ButtonObject::render(RenderWindow* handle, Vector2f scale)
 {
-
+	// Draws a larger button image if the mouse is hovering over it
 	if (mainButton.getTexture() != nullptr && scaledButton.getTexture() != nullptr)
 	{
 		if (hover)
@@ -45,6 +45,7 @@ void ButtonObject::render(RenderWindow* handle, Vector2f scale)
 			handle->draw(mainButton);
 		}
 	}
+	// If the button doesn't have a texture, use a rectangle as placeholder
 	else
 	{
 		Vector2f topLeftCorner = topLeft;
@@ -63,7 +64,7 @@ void ButtonObject::render(RenderWindow* handle, Vector2f scale)
 	}
 	
 
-	// Draws text
+	// Draws text line by line
 
 	if (hover)
 	{
@@ -84,11 +85,12 @@ void ButtonObject::render(RenderWindow* handle, Vector2f scale)
 
 void ButtonObject::processInput(Keyboard::Key key, bool isPressed)
 {
-
+	
 }
 
 void ButtonObject::processInput(Vector2i position, bool isPressed)
 {
+	// If mouse if clicked while over button
 	hover = isHovered(Vector2i(position.x, position.y));
 	if (isPressed && hover)
 	{
@@ -98,6 +100,7 @@ void ButtonObject::processInput(Vector2i position, bool isPressed)
 
 bool ButtonObject::isHovered(Vector2i hoverPos)
 {
+	// Checks if mouse is hovering over button
 	return (topLeft.x < hoverPos.x && hoverPos.x < bottomRight.x &&
 		topLeft.y < hoverPos.y && hoverPos.y < bottomRight.y);
 }
@@ -115,7 +118,9 @@ void ButtonObject::confirmButtonAction(Types::Confirm confirm)
 
 void ButtonObject::setText(Fonts::ID fontID, int fontSize, string text)
 {
-	// Will probably be overidden by subclasses just because text location and style is different
+	// Stores the style and location of each line of text in a vector to be drawn
+	// when the render method is called
+	// scaledTextLines is the scaled version for when the mouse is hovering over the button
 	vector<string> lines = TextBox::getTextLines(Vector2f(size.x*0.95, size.y*0.95), textureManager->getFont(fontID), fontSize, text);
 
 	for (int i = 0; i < lines.size(); i++)
