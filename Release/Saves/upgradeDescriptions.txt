@@ -1,0 +1,105 @@
+Shots increase in size for easier aim#
+Shots fly out faster for better accuracy#
+Shoots with much higher frequency#
+Shoots faster, shots do more damage, and shots increase in size#
+Starts the game with 40% more health#
+Takes significantly less damage when going too high up#
+Can do regular shots along with autoshoot#
+For 4 seconds, the turnip will shoot faster with increased damage, and will take less damage from enemies#
+Shots can affect up to 3 enemies at once#
+Turnip takes 20% less damage from birds#
+Turnip has a 15% chance to throw a bullet that stuns the enemy#
+Raging turnip is activated for a short time whenever it loses health#
+
+Turnip shoots much faster and does more damage#
+The turnip's reload speed gets another boost#
+Bullets double in size and do more damage#
+Bullets split into three fragments each time upon collision#
+Turnip starts with 50% more health at the cost of having 10% slower reload#
+Turnip shots fly out faster#
+Turnip does significantly more damage at the cost of being slightly slower#
+For 6 seconds, the turnip shoots two bullets instead of one, dealing double the damage#
+Turnip shots fly out 35% faster#
+Shots do ½ the damage but there’s a 25% chance of it doing 10 times the damage (5 times initial damage)#
+Has a small chance to stun enemies#
+Turnip’s attack speed and damage will increase with game rank#
+
+Shots fly out much faster#
+Objects that are hit are pushed back sightly#
+Shots bounce off the target, but lose effectiveness each time#
+Press W to launch a parachute that increases the drag of falls#
+More power (haha get it?) = faster reload#
+Shots fly out significantly faster#
+Obstacles near the projectiles take damage#
+Hurls a wrecking ball that has 4 times the size and 10 times the damage of a regular attack#
+Pierce of shots increases from 2 to 10#
+Turnip takes 25% less damage from enemies#
+Shots permanently removes the faded status from obstacles#
+Press S to activate a jet pack that helps the turnip fly up smoothly#
+
+Has a small chance of burning the enemy upon collision#
+Has a chance of slowing down obstacle upon collision#
+Has a small chance of stopping the enemy upon collision#
+All chemical effects last slightly longer#
+Does significantly more damage, but takes slightly more damage from fireballs#
+Shots permanently remove the faded effect from obstacles#
+Bullets fly out slightly faster#
+All on-screen objects are given slow effect, fireballs have their health halved, and faded obstacles become permanently visible#
+Has a small chance of poisoning birds upon collision#
+Turnip takes less damage from enemies#
+Chances of shots having any effects increases significantly, but turnip shoots slightly slower#
+Shots burst into 3 parts upon collision#
+
+Starts the game with 50% more health#
+Shots fly out faster#
+Turnip does more damage, shots fly out faster, and attack speed increases. Safe to consume.#
+Turnip gains health slowly over time (better than Dr Racket)#
+Birds do 40% less damage#
+Has a small chance of poisoning birds#
+Turnip can get up to 400% of initial health#
+Poisons all birds on screen and receives 20% of their health#
+Health packs are more effective#
+Has a 15% chance to revive when you die, respawn at half the health#
+Attack damage increases as your health decreases (below your starting health only)#
+Turnip stats improve as you rank up#
+
+Shots are significantly bigger#
+Shots do more damage#
+Shots fly out faster#
+Has a very small chance of hurling a boulder that’s 3 times the size and damage of a regular shot#
+Rocks have a very small chance to release gold upon collision#
+Takes 20% less damage overall and another 30% less from fireballs#
+Rocks have a significant chance to split into 5 mini rocks upon collision#
+Rocks fall from the sky#
+Non-splitting rocks have a pierce of 2#
+Takes significantly less damage when going too far down#
+Has a  small chance of burning the enemy (ineffective against fireballs)#
+Burn chance increases significantly and shots do more damage#
+
+Turnip takes less damage#
+Speed increases significantly at the cost of reduced accuracy#
+Turnip shoots faster and does more damage#
+Turnip gains immunity to UFO paralysis#
+Shots fly out faster and are slightly bigger#
+Turnip takes half the damage from team substitutions#
+Turnip is protected by a shielding force which wears down over time#
+Shoots in a constant stream for 4 seconds#
+Shots split into two pieces upon collision#
+Has a small chance to stun enemies#
+Shots follow your cursor but have a more limited lifespan#
+Lifespan of projectiles increases significantly and they do more damage#
+
+Turnip takes less damage when going up too high#
+Takes less damage from nature enemies like birds and fireballs#
+Does significanly more damage#
+Activated Ability: Blows all enemies back#
+Turnip takes only half the damage when switched in and out of the team#
+Turnip is not affected by clouds#
+Turnip starts with 40% more health#
+Shoots a bolt of lightning#
+Turnip takes less damage when going down too low#
+Turnip shoots slightly slower but shots do more damage#
+Turnip shoots faster and shots are larger#
+Activated Ability: Rain falls from the sky and pushes everything down. Enemies take damage in the process#
+
+

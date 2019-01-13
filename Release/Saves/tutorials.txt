@@ -1,0 +1,100 @@
+Hello and welcome to Jumpy Turnip! This is the game about a turnip who wished it could fly (because why not?). 
+Unfortunately, flying is not easy an there are many things stopping the turnip from achieving its dreams.
+#
+To play the game, press space to jump and click with your mouse to shoot. The turnip shoots in the general 
+direction of your mouse, but the shots are affected by gravity, so you may need to adjust your aim.
+#
+Don't collide with the birds! They are your enemies and will weaken your turnip. A weak turnip is unfortunately 
+unable to jump properly. Knock down the birds with your shots to score points.
+#
+As you play the game, your turnip will gain experience which helps it unlock new abilities. You can also buy upgrades 
+for your turnip using money you get for winning each round (and occasionally for knocking down a bird or shooting down a supply crate). 
+Spend your money wisely as your combination of upgrades can greatly affect how the later rounds of the game go. Keep in 
+mind that different levels have different objectives, and so different upgrades would be useful in each scenario. Good luck! 
+I believe in you!
+#
+You will soon encounter a new type of enemy: the fireball. Unlike birds, fireballs aren't living and aren't affected by 
+things such as poison. They also have more health and deal more damage to your turnip. They also split into three parts when 
+you kill them the first time. Yikes! On the bright side, they move much slower than birds.
+#
+In some levels, enemies reappear if you don't knock them down. This helps you get the points that you otherwise would've missed, 
+but makes survival more of a challenge
+#
+Survival is not always a goal in some levels - especially endless ones where enemies keep spawning non-stop. In this case you win by 
+achieving a certain score.
+#
+Behold... the flappy bird! The flappy bird is not necessarily tough on its own, but it can jump around making aiming and dodging challenge.
+#
+Some enemies have a regen status, which means that they heal themselves over time if you don't knock them down quickly enough.
+#
+Some enemies have a fade status, which makes them less visible than others. There are upgrades to combat this, but a keen eyesight and good 
+memory will help as well.
+#
+Lots of flappy birds incoming. Good luck!
+#
+This level is slightly different from the others. You'll be going against the fireball boss. Bosses are harder to knock down than normal enemies 
+but they give a lot of points. Keep in might that fireball splits when killed!
+#
+Clouds don't deal damage to you, but they weaken your attacks if you shoot through one. They can also remove any effects that your shots have, 
+such as poison and fade remove.
+#
+Planes are strong and fast, but are worth a lot of points if you knock them down. They also have a high chance of dropping gold.
+#
+UFOs don't deal damage, but are hard to kill and paralyzes you if you come too close to one. Be careful!
+#
+Some turnips and upgrades will be really really useful for this round. Others not so much. You decide :)
+#
+It seems like the brids are migrating. Could this mean something is coming?
+#
+Final level. Good luck!
+#
+In freeplay, there is no end and you have no goal except to survive as long as possible and get as many points as possible. Good luck!
+#
+This is the upgrade menu for your turnips. You can buy skills here that make your turnip stronger and more capable while in the sky. Spend your money 
+wisely as some upgrades are more helpful than others in different situations.
+#
+This is where you can buy new turnips and slots to bring different turnips along to battle. Use the keys 1, 2, 3,.. to change turnips in game. By default, 
+you start the game with turnip 1.
+#
+You now have a second team member! Use 1 and 2 to swtich between them, and 3, 4, 5... up to 8 for each additional team member you have. When one turnip gets 
+knocked down, another will come to take its place. Be careful though, as switching turnips takes health from you! As a bonus advice, you can "switch" a turnip
+with it self to reset it back to its starting position.
+#
+One of your turnips now has an activated ability! When the ability bar fills up, press D to activate the ability. Abilities are great for use in emergency situations.
+#
+@
+Your turnip has unlocked the ability auto-shoot. Press A to activate. Auto-shoot allows your turnip to shoot without you clicking. However, it has 40% longer reload time.
+#
+Your turnip now does 25% more damage.
+#
+Your turnip will now start off with a 2-second invincibility period, making switching players and starting a level easier.
+#
+Your turnip will now fire 25% faster.
+#
+Your turnip has unlocked autojump. Press J to activate. Auto-jump allows your turnip to hop around the same place without your control.
+#
+Your shots will fly out 25% faster.
+#
+Your turnip will now take two-thirds the normal damage from player swaps.
+#
+Your turnip will now start the game with 25% more health.
+#
+Your turnip's invincibility period has been extended to 5 seconds instead of 2.
+#
+Autoshoot now fires at 20% delay.
+#
+Your turnip's shots are 25% bigger in size.
+#
+Your turnip's activated ability will now recharge 25% faster.
+#
+Your turnip will not start the game with 50% more health.
+#
+Your turnip will not shoot 50% faster.
+#
+Your turnip will now only take one-third the damage from player swaps.
+#
+You turnip will not do 50% more damage.
+#
+Your auto-shoot no longer experiences delay.
+#
+@
