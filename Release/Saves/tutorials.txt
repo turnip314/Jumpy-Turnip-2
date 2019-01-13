@@ -63,7 +63,7 @@ with it self to reset it back to its starting position.
 One of your turnips now has an activated ability! When the ability bar fills up, press D to activate the ability. Abilities are great for use in emergency situations.
 #
 @
-Your turnip has unlocked the ability auto-shoot. Press A to activate. Auto-shoot allows your turnip to shoot without you clicking. However, it has 40% longer reload time.
+Your turnip has unlocked the abilities auto-shoot and auto-jump. Press A and J to activate. Auto-shoot allows your turnip to shoot without you clicking. However, it has 40% longer reload time. Auto-jump allows your turnip to hop around the same place without your control.
 #
 Your turnip now does 25% more damage.
 #
@@ -71,7 +71,7 @@ Your turnip will now start off with a 2-second invincibility period, making swit
 #
 Your turnip will now fire 25% faster.
 #
-Your turnip has unlocked autojump. Press J to activate. Auto-jump allows your turnip to hop around the same place without your control.
+Your turnip's shots now have one extra pierce.
 #
 Your shots will fly out 25% faster.
 #
