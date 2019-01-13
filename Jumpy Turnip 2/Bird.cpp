@@ -98,7 +98,7 @@ void Bird::setStats(float speed, float newHealth, float newDamage, bool fades, b
 
 void Bird::setPosition(Vector2f newPos)
 {
-	// Changed this from earlier because the xPos of bird is never affected externally
+	// Changes "equilibrium point" of the bird's wave-like motion
 	yPos = newPos.y;
 	Obstacle::setPosition(newPos);
 }
