@@ -164,7 +164,9 @@ void Projectile::setStats(Vector2f newVelocity, int newRadius, int newDamage, in
 
 void Projectile::setSplit(int newSplitNum)
 {
-	splitNum = newSplitNum;
+	// Pierce gets converted to how many splits a projectile gets (otherwise pierce is harmful)
+	splitNum = newSplitNum + pierce - 1;
+	pierce = 1;
 }
 
 void Projectile::setContinuousSplit()
