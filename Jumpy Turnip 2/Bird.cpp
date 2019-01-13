@@ -98,6 +98,7 @@ void Bird::setStats(float speed, float newHealth, float newDamage, bool fades, b
 
 void Bird::setPosition(Vector2f newPos)
 {
+	// Changed this from earlier because the xPos of bird is never affected externally
 	yPos = newPos.y;
 	Obstacle::setPosition(newPos);
 }
