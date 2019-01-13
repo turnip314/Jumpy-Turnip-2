@@ -14,7 +14,8 @@ Bird::~Bird()
 void Bird::update(Time dt)
 {
 	float time = dt.asMilliseconds();
-
+	
+	// Because all birds move in a wave-like motion, of course
 	if (alive)
 	{
 		phase = fmod(phase + 0.02 / radius * time, 2 * Math::pi);
@@ -48,7 +49,8 @@ void Bird::poison(float time, float damage)
 
 void Bird::setStats(float speed, float newHealth, float newDamage, bool fades, bool regens)
 {
-
+	// Initializes the stats specific to each bird type based on the generic obstacle stats given
+	// Mr Goose is the main exception to this, and partially handled its stats itself
 	Obstacle::setStats(speed, newHealth, newDamage, fades, regens);
 	score = 15 * sqrt(speed*newHealth*newDamage);
 	if (fades)
