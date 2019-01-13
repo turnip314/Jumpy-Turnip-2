@@ -66,13 +66,13 @@ private:
 	GameScene* scene;
 
 	int radius;
-	int pierce;
-	int damage;
-	float lifespan;
+	int pierce = 1;
+	int damage = 0;
+	float lifespan = 0;
 
-	int splitNum;
-	bool continuousSplit;
-	bool follow;
+	int splitNum = 0;
+	bool continuousSplit = false;
+	bool follow = false;
 	float stun;
 	float slow;
 	float freeze;

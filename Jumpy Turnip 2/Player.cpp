@@ -467,6 +467,7 @@ void Player::initializeStats(Types::Players thisType, int playerUpgrades[12], in
 		autoShootAvailable = true;
 		autoReloadTime = reloadTime * 1.4;
 		autoReload = autoReloadTime;
+		autoJumpAvailable = true;
 	}
 	if (rank >= 10)
 	{
@@ -481,9 +482,10 @@ void Player::initializeStats(Types::Players thisType, int playerUpgrades[12], in
 		reloadTime /= 1.25;
 		autoReloadTime = reloadTime * 1.4;
 	}
+	//testing
 	if (rank >= 25)
 	{
-		autoJumpAvailable = true;
+		shotPierce++;
 	}
 	if (rank >= 30)
 	{
@@ -1337,7 +1339,6 @@ void Player::mathShoot(Vector2i pos)
 			shot->setStun(2);
 		}
 	}
-
 	shot->setStats(vel, bulletSize, thisDamage, shotPierce, shotLifeSpan);
 	scene->addPlayerProjectile(shot);
 	if (abilityActivated)

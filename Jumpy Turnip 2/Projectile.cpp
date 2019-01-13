@@ -139,7 +139,7 @@ void Projectile::render(RenderWindow* handle, Vector2f scale)
 
 void Projectile::processInput(Keyboard::Key, bool isPressed)
 {
-
+	
 }
 
 void Projectile::processInput(Vector2i pos, bool isPressed)
@@ -158,10 +158,9 @@ void Projectile::setStats(Vector2f newVelocity, int newRadius, int newDamage, in
 	speed = Math::magnitude(velocity);
 	radius = newRadius;
 	damage = newDamage;
-	
 	if (splitNum >= 0)
 	{
-		splitNum += pierce - 1;
+		splitNum += newPierce - 1;
 		newPierce = 1;
 	}
 	else
@@ -173,7 +172,6 @@ void Projectile::setStats(Vector2f newVelocity, int newRadius, int newDamage, in
 
 void Projectile::setSplit(int newSplitNum)
 {
-	// Pierce gets converted to how many splits a projectile gets (otherwise pierce is harmful)
 	splitNum = newSplitNum + pierce - 1;
 	pierce = 1;
 }
