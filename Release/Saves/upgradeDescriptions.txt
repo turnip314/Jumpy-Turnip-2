@@ -66,7 +66,7 @@ Turnip stats improve as you rank up#
 Shots are significantly bigger#
 Shots do more damage#
 Shots fly out faster#
-Has a very small chance of hurling a boulder that’s 3 times the size and damage of a regular shot#
+Has a very small chance of hurling a boulder that is 3 times the size and damage of a regular shot#
 Rocks have a very small chance to release gold upon collision#
 Takes 20% less damage overall and another 30% less from fireballs#
 Rocks have a significant chance to split into 5 mini rocks upon collision#
