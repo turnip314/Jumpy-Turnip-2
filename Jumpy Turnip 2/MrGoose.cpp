@@ -105,7 +105,7 @@ void MrGoose::attack()
 			fireballTexture = fireballTexture2;
 		}
 		Fireball* fireball = new Fireball(Types::Obstacles::Fireball, fireballTexture, fireballTexture, scene);
-		fireball->setStats(2.f, 1.f, 1.f, false, true);
+		fireball->setStats(2.f, 1.5f, 1.f, false, true);
 		fireball->setPosition(Vector2f(position.x - 350, position.y - 40));
 		fireball->setVelocity(Vector2f(fireball->getVelocity().x, 25 * (i - 1)));
 		scene->pushObstacle(fireball);

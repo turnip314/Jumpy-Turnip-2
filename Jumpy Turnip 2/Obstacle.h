@@ -45,6 +45,7 @@ public:
 	// Non bird objects are immune
 	virtual void poison(float time, float damage);
 	void removeFade();
+	void removeRegen();
 	virtual void knockback(Vector2f direction);
 	void shock();
 	void blowBack(float time);

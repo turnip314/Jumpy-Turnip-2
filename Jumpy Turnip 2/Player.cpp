@@ -539,10 +539,9 @@ void Player::initializeStats(Types::Players thisType, int playerUpgrades[12], in
 		autoReloadTime = reloadTime;
 	}
 
-	damage *= (1 + (rank - 1) / 120.0);
-	shotSpeed *= (1 + (rank - 1) / 120.0);
-	reloadTime /= (1 + (rank - 1) / 120.0);
-	shotSpeed *= (1 + (rank - 1) / 120.0);
+	damage *= (1 + (rank - 1) / 300.0);
+	shotSpeed *= (1 + (rank - 1) / 200.0);
+	reloadTime /= (1 + (rank - 1) / 300.0);
 
 	if (!(type == Types::Players::Biology && upgrades[6] == 2))
 	{
@@ -775,9 +774,9 @@ void Player::normieInitialize()
 	}
 	if (upgrades[3] == 2)
 	{
-		reloadTime /= 1.2;
-		damage *= 1.3;
-		bulletSize *= 1.25;
+		reloadTime /= 1.15;
+		damage *= 1.2;
+		bulletSize *= 1.2;
 	}
 	if (upgrades[4] == 2)
 	{
@@ -790,6 +789,7 @@ void Player::normieInitialize()
 	if (upgrades[6] == 2)
 	{
 		multitask = true;
+		reloadTime *= 1.2;
 	}
 	if (upgrades[7] == 2)
 	{
@@ -1023,6 +1023,7 @@ void Player::bioInitialize()
 	reloadTime = 190;
 	reload = reloadTime;
 	bulletSize = 6;
+	resistance *= 0.95;
 
 	if (upgrades[0] == 2)
 	{
@@ -1034,7 +1035,7 @@ void Player::bioInitialize()
 	}
 	if (upgrades[2] == 2)
 	{
-		damage *= 1.25;
+		damage *= 1.3;
 		shotSpeed *= 1.5;
 		reloadTime /= 1.2;
 	}
@@ -1066,7 +1067,6 @@ void Player::bioInitialize()
 	if (upgrades[9] == 2)
 	{
 		// Handled by death
-		// Not implemented
 	}
 	if (upgrades[10] == 2)
 	{
@@ -1086,7 +1086,7 @@ void Player::geoInitialize()
 {
 	// Base stats
 	health = 230;
-	damage = 14;
+	damage = 16;
 	reloadTime = 200;
 	reload = reloadTime;
 	bulletSize = 9;
@@ -1300,7 +1300,6 @@ void Player::natureInitialize()
 
 void Player::normieShoot(Vector2i pos)
 {
-
 	Vector2f vel = Math::vector(shotSpeed, Math::direction(position, Vector2f(pos.x, pos.y)));
 	Projectile* shot = new Projectile(Color(50, 150, 50), scene,position);
 	shot->setStats(vel, bulletSize, damage, shotPierce, shotLifeSpan);
@@ -1458,11 +1457,18 @@ void Player::bioShoot(Vector2i pos)
 	Projectile* shot = new Projectile(Color(50, 150, 50), scene, position);
 	float thisDamage = damage;
 
+	if (upgrades[3] == 2)
+	{
+		if (Math::random() < 0.1)
+		{
+			
+		}
+	}
 	if (upgrades[5] == 2)
 	{
 		if (Math::random() < 0.25)
 		{
-			shot->setPoison(5);
+			shot->setPoison(10);
 		}
 	}
 	if (upgrades[10] == 2)
@@ -1495,7 +1501,7 @@ void Player::geoShoot(Vector2i pos)
 	}
 	if (upgrades[4] == 2)
 	{
-		shot->setGoldReleaseChance(0.03);
+		shot->setGoldReleaseChance(0.02f);
 	}
 	if (upgrades[6] == 2)
 	{

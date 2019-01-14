@@ -62,7 +62,7 @@ void ButtonObject::render(RenderWindow* handle, Vector2f scale)
 		rectangle.setFillColor(Color::Green);
 		handle->draw(rectangle);
 	}
-	
+
 
 	// Draws text line by line
 
@@ -85,7 +85,7 @@ void ButtonObject::render(RenderWindow* handle, Vector2f scale)
 
 void ButtonObject::processInput(Keyboard::Key key, bool isPressed)
 {
-	
+
 }
 
 void ButtonObject::processInput(Vector2i position, bool isPressed)
@@ -134,8 +134,8 @@ void ButtonObject::setText(Fonts::ID fontID, int fontSize, string text)
 		}
 		else
 		{
-			newLine.setPosition(Vector2f((int)(topLeft.x + size.x*0.05), 
-				(int)(topLeft.y + (textLines.at(textLines.size()-1)).getCharacterSize() * 1.1 * textLines.size() + size.y*0.05)));
+			newLine.setPosition(Vector2f((int)(topLeft.x + size.x*0.05),
+				(int)(topLeft.y + (textLines.at(textLines.size() - 1)).getCharacterSize() * 1.1 * textLines.size() + size.y*0.05)));
 		}
 		newLine.setString(lines[i]);
 		newLine.setFillColor(Color(255, 255, 255, 192));

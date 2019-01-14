@@ -3,7 +3,7 @@
 
 
 
-Cloud::Cloud(Types::Obstacles thisType, Texture* thisTexture, GameScene* thisScene):
+Cloud::Cloud(Types::Obstacles thisType, Texture* thisTexture, GameScene* thisScene) :
 	Obstacle(thisType, thisTexture, thisScene)
 {
 }

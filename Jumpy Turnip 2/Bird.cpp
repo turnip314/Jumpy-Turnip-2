@@ -4,7 +4,7 @@
 Bird::Bird(Types::Obstacles thisType, Texture* texture, GameScene* thisScene) :
 	Obstacle(thisType, texture, thisScene)
 {
-	
+
 }
 
 Bird::~Bird()
@@ -14,7 +14,7 @@ Bird::~Bird()
 void Bird::update(Time dt)
 {
 	float time = dt.asMilliseconds();
-	
+
 	// Because all birds move in a wave-like motion, of course
 	if (alive)
 	{
@@ -91,7 +91,7 @@ void Bird::setStats(float speed, float newHealth, float newDamage, bool fades, b
 		initHealth = health;
 		damage *= 15;
 		velocity.x *= 150;
-		
+
 		sprite.setOrigin(Vector2f(20.f, 15.f));
 	}
 }

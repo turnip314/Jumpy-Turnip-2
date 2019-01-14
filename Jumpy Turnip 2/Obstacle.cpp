@@ -387,6 +387,11 @@ void Obstacle::removeFade()
 	sprite.setColor(Color(255, 255, 255, 255));
 }
 
+void Obstacle::removeRegen()
+{
+	regen = false;
+}
+
 void Obstacle::knockback(Vector2f direction)
 {
 	knockedBack = 0.15f;

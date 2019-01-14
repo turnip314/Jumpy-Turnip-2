@@ -20,6 +20,7 @@ public:
 	void setBurn(float time);
 	void setPoison(float time);
 	void setFadeRemove();
+	void setRegenRemove();
 	void setKnockback(float power);
 	void setBounce();
 	void setNuclear();
@@ -74,11 +75,12 @@ private:
 	bool continuousSplit = false;
 	bool follow = false;
 	float stun;
-	float slow;
+	float slow; 
 	float freeze;
 	float burn;
 	float poison;
 	bool fadeRemove;
+	bool regenRemove;
 	bool knockback;
 	float knockbackPower;
 	bool bounce;

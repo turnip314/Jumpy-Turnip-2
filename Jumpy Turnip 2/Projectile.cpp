@@ -158,7 +158,7 @@ void Projectile::setStats(Vector2f newVelocity, int newRadius, int newDamage, in
 	speed = Math::magnitude(velocity);
 	radius = newRadius;
 	damage = newDamage;
-	if (splitNum >= 0)
+	if (splitNum >= 2)
 	{
 		splitNum += newPierce - 1;
 		newPierce = 1;
@@ -172,6 +172,7 @@ void Projectile::setStats(Vector2f newVelocity, int newRadius, int newDamage, in
 
 void Projectile::setSplit(int newSplitNum)
 {
+	// pierce is converted to split when applicable
 	splitNum = newSplitNum + pierce - 1;
 	pierce = 1;
 }
@@ -214,6 +215,11 @@ void Projectile::setPoison(float time)
 void Projectile::setFadeRemove()
 {
 	fadeRemove = true;
+}
+
+void Projectile::setRegenRemove()
+{
+	regenRemove = true;
 }
 
 void Projectile::setKnockback(float power)
@@ -299,6 +305,11 @@ void Projectile::doDamage(Obstacle* obstacle)
 			obstacle->setHealth(obstacle->getHealth() - damage);
 		}
 
+		if (Math::random() < goldReleaseChance)
+		{
+			scene->addMoney(5, position);
+		}
+
 		// Projectile damages obstacle and passes on any effects
 		//obstacle->addImmune(this);
 		pierce -= 1;
@@ -320,7 +331,7 @@ void Projectile::doDamage(Obstacle* obstacle)
 		}
 		if (poison)
 		{
-			obstacle->poison(poison, damage*0.25f);
+			obstacle->poison(poison, damage*0.5f);
 		}
 		if (knockback)
 		{
@@ -333,6 +344,10 @@ void Projectile::doDamage(Obstacle* obstacle)
 		if (fadeRemove)
 		{
 			obstacle->removeFade();
+		}
+		if (regenRemove)
+		{
+			obstacle->removeRegen();
 		}
 		if (obstacle->getType() != Types::Obstacles::Cloud)
 		{
@@ -362,11 +377,6 @@ void Projectile::doDamage(Obstacle* obstacle)
 		}
 		pierce = -1;
 		addToRemoveList();
-
-		if (Math::random() < goldReleaseChance)
-		{
-			scene->addMoney(20, position);
-		}
 	}
 
 }

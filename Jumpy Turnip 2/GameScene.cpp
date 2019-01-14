@@ -264,13 +264,13 @@ void GameScene::render(RenderWindow* handle, Vector2f scale)
 	for (unsigned i = 0; i < playerProjectiles.size(); i++) {
 		playerProjectiles[i]->render(handle, scale);
 	}
+	for (unsigned i = 0; i < obstacles.size(); i++) {
+		obstacles[i]->render(handle, scale);
+	}
 	player->render(handle, scale);
 	for (unsigned i = 0; i < teamSize; i++)
 	{
 		team[i]->renderFrontView(handle, scale, Vector2f(50.f + 60 * i, 650.f));
-	}
-	for (unsigned i = 0; i < obstacles.size(); i++) {
-		obstacles[i]->render(handle, scale);
 	}
 	for (unsigned i = 0; i < buttons.size(); i++) {
 		buttons[i]->render(handle, scale);
