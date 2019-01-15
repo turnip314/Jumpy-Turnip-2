@@ -53,7 +53,7 @@ Shots burst into 3 parts upon collision#
 Starts the game with 50% more health#
 Shots fly out faster#
 Turnip does more damage, shots fly out faster, and attack speed increases. Safe to consume.#
-Turnip gains health slowly over time (better than Dr Racket)#
+Turnip gains health slowly over time and has a chance to prevent obstacles from regenerating (better than Dr Racket)#
 Birds do 40% less damage#
 Has a small chance of poisoning birds#
 Turnip can get up to 400% of initial health#
