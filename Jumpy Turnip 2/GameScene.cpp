@@ -942,7 +942,7 @@ void GameScene::endGame()
 		}
 		else
 		{
-			endPanel->setMessage("Game over. You did obtain the required score for this level.");
+			endPanel->setMessage("Game over. You did not obtain the required score for this level.");
 		}
 	}
 	else if (gameObjective == Types::Objectives::None)
