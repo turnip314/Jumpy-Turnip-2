@@ -1,5 +1,13 @@
-﻿  Plane.cpp
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\plane.cpp(26): warning C4305: '*=': truncation from 'double' to 'float'
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\plane.cpp(30): warning C4305: '*=': truncation from 'double' to 'float'
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\plane.cpp(32): warning C4305: '=': truncation from 'double' to 'float'
+﻿  GameScene.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(98): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(99): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(105): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(106): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(114): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(115): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(201): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(271): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(698): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(838): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(975): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Jumpy Turnip 2.vcxproj -> C:\Users\turni\source\repos\Jumpy Turnip 2\Debug\Jumpy Turnip 2.exe
