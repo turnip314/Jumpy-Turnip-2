@@ -1,13 +1,255 @@
-﻿  GameScene.cpp
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(98): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(99): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(105): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(106): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(114): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(115): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(201): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(271): warning C4018: '<': signed/unsigned mismatch
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(698): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(838): warning C4018: '<': signed/unsigned mismatch
-c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(975): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  Bird.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\bird.cpp(16): warning C4244: 'initializing': conversion from 'sf::Int32' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\bird.cpp(21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\bird.cpp(58): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\bird.cpp(62): warning C4305: '*=': truncation from 'double' to 'float'
+  ButtonObject.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(55): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(56): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(57): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(58): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(124): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(126): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(138): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(137): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(145): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(151): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(152): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(153): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(162): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(166): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\buttonobject.cpp(171): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Cloud.cpp
+  Coin.cpp
+  ConfirmButton.cpp
+  Entity.cpp
+  Fireball.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\fireball.cpp(31): warning C4244: 'initializing': conversion from 'sf::Int32' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\fireball.cpp(62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\fireball.cpp(99): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\fireball.cpp(102): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\fireball.cpp(103): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\fireball.cpp(122): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\fireball.cpp(126): warning C4305: '*=': truncation from 'double' to 'float'
+  Flappy.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\flappy.cpp(17): warning C4244: 'initializing': conversion from 'sf::Int32' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\flappy.cpp(37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  Game.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(23): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(292): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(293): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(386): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(387): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(498): warning C4101: 'newMember': unreferenced local variable
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(559): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(560): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(585): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(597): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(882): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(898): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(1325): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(1328): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(1331): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+  GameScene.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(100): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(101): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(107): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(108): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(116): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(117): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(210): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(280): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(713): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(860): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\gamescene.cpp(1001): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Healthpack.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\healthpack.cpp(26): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\healthpack.cpp(27): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+  LevelButton.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\levelbutton.cpp(94): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\levelbutton.cpp(101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\levelbutton.cpp(108): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Lightning.cpp
+  Main.cpp
+  Math.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\math.cpp(32): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\math.cpp(46): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Menu.cpp
+  MenuButton.cpp
+  MessagePanel.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\messagepanel.cpp(50): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\messagepanel.cpp(62): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\messagepanel.cpp(67): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\messagepanel.cpp(76): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\messagepanel.cpp(84): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\messagepanel.cpp(241): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\messagepanel.cpp(246): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  MrGoose.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\mrgoose.cpp(56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\mrgoose.cpp(60): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\mrgoose.cpp(116): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\mrgoose.cpp(139): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Obstacle.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\obstacle.cpp(65): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\obstacle.cpp(205): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\obstacle.cpp(217): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\obstacle.cpp(220): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\obstacle.cpp(439): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\obstacle.cpp(443): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\obstacle.cpp(447): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\game.cpp(213): warning C4715: 'Game::getPlayerTextureID': not all control paths return a value
+  Compiling...
+  Plane.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\plane.cpp(28): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\plane.cpp(32): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\plane.cpp(34): warning C4305: '=': truncation from 'double' to 'float'
+  Player.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(59): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(97): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(194): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(352): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(498): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(513): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(539): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(557): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(572): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(573): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(574): warning C4244: '/=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(579): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(596): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(642): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(660): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(679): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(687): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(698): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(699): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(701): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(718): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(733): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(757): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(760): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(778): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(815): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(819): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(823): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(824): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(825): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(829): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(833): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(838): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(851): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(877): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(881): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(885): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(895): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(904): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(913): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(926): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(927): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(928): warning C4244: '/=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(929): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(947): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(948): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(949): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(966): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1037): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1054): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1072): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1080): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1084): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1086): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1094): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1123): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1124): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1125): warning C4244: '/=': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1146): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1162): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1163): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1180): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1188): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1206): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1210): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1214): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1215): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1223): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1224): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1249): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1255): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1277): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1278): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1282): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1283): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1301): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1307): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1321): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1326): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1327): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1333): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1351): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1351): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1353): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1366): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1366): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1373): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1389): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1395): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1402): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1402): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1407): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1413): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1423): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1438): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1438): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1440): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1490): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1491): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1492): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1493): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1504): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1504): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1530): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1536): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1536): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1539): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1540): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1582): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1582): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1587): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1593): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1606): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1612): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1612): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1614): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\player.cpp(1668): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  PlayerButton.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\playerbutton.cpp(181): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Projectile.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(9): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(139): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(153): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(309): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(371): warning C4244: '*=': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(382): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(388): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(436): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(437): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(442): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\projectile.cpp(443): warning C4305: '*=': truncation from 'double' to 'float'
+  SupplyCrate.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\supplycrate.cpp(42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\supplycrate.cpp(51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  TextBox.cpp
+  TextureManager.cpp
+  UFO.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\ufo.cpp(30): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\ufo.cpp(34): warning C4305: '*=': truncation from 'double' to 'float'
+  UpgradeButton.cpp
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\upgradebutton.cpp(101): warning C4018: '<': signed/unsigned mismatch
+c:\users\turni\source\repos\jumpy turnip 2\jumpy turnip 2\upgradebutton.cpp(105): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   Jumpy Turnip 2.vcxproj -> C:\Users\turni\source\repos\Jumpy Turnip 2\Debug\Jumpy Turnip 2.exe
