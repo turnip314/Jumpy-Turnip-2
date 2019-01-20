@@ -16,11 +16,17 @@ public:
 	virtual void render(RenderWindow* handle, Vector2f scale);
 	virtual void processInput(Keyboard::Key, bool isPressed);
 	virtual void processInput(Vector2i pos, bool isPressed);
-	virtual void doButtonAction();
-	virtual void confirmButtonAction(Types::Confirm confirm);
-	// virtual void confirmButtonAction();
 
+	// Called when button is needed
+	virtual void doButtonAction();
+
+	// Called in case a confirmation is needed from message panel
+	virtual void confirmButtonAction(Types::Confirm confirm);
+
+	// Sets text on the button
 	virtual void setText(Fonts::ID fontID, int fontSize, string text);
+
+	// Centers text horizontally
 	virtual void centerText();
 
 protected:
@@ -44,6 +50,7 @@ protected:
 	// For when button is hovered
 	vector<Text> scaledTextLines;
 
+	// Stores a main sprite and sprite to be displayed if mouse hovers over it
 	Sprite mainButton;
 	Sprite scaledButton;
 	

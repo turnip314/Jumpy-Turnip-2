@@ -6,13 +6,15 @@
 
 Obstacle::Obstacle(Types::Obstacles thisType, Texture* thisTexture, GameScene* thisScene)
 {
+	// Initializes sprite of obstacle
 	texture = thisTexture;
 	if (texture != nullptr)
 	{
 		sprite.setTexture(*thisTexture);
 	}
 	
-	position = Vector2f(1280, 360); // default
+	// defaults, may be replaced by specific obstacle's initialization
+	position = Vector2f(1280, 360);
 	radius = 15;
 
 	type = thisType;
@@ -31,7 +33,7 @@ void Obstacle::update(Time dt)
 
 	if (alive)
 	{
-
+		// If damaged, will regenerate 10% of its health per second
 		if (regen && health < initHealth)
 		{
 			health += initHealth * time / 10.f;
@@ -41,15 +43,20 @@ void Obstacle::update(Time dt)
 				health = initHealth;
 			}
 		}
+
+		// EFFECTS AFFECTING MOVEMENT
+		// If stunned, will not move and take damage
 		if (stunned > 0)
 		{
 			health -= stunDamage * time;
 			stunned -= time;
 		}
+		// If frozen, will not move
 		if (frozen > 0)
 		{
 			frozen -= time;
 		}
+		// Moves 30% slower
 		if (slowed > 0)
 		{
 			slowed -= time;
@@ -57,25 +64,28 @@ void Obstacle::update(Time dt)
 			{
 				position = Vector2f(position.x + velocity.x * time * 0.7, position.y + velocity.y * time * 0.7);
 			}
-				
-		
 		}
+		// If not stunned, slowed, or frozen, moev at regular speed
 		if ((stunned <= 0) && (frozen <= 0) && (slowed <= 0))
 		{
 			position = Vector2f(position.x + velocity.x * time, position.y + velocity.y * time);
 		}
 
+		// DAMAGE ONLY EFFECTS
+		// If burned, take burn damage
 		if (burned > 0)
 		{
 			burned -= time;
 			health -= burnDamage * time;
 		}
+		// If poisoned, take poison damage
 		if (poisoned > 0)
 		{
 			poisoned -= time;
 			health -= poisonDamage * time;
 		}
 
+		// If not immobile, cannot be pushed offscreen
 		if (alive && stunned <= 0 && frozen <= 0)
 		{
 			if (position.y < 10)
@@ -95,8 +105,6 @@ void Obstacle::update(Time dt)
 			die();
 		}
 
-		
-
 		// Checks for collisions with player
 		if (hasCollided(scene->player))
 		{
@@ -105,6 +113,7 @@ void Obstacle::update(Time dt)
 	}
 	else
 	{
+		// If dead, falls
 		velocity.y += 2000 * time;
 		position.y += velocity.y * time;
 		position.x += velocity.x * time;
@@ -122,15 +131,17 @@ void Obstacle::update(Time dt)
 		projectile->doNuclearDamage(this, dt);
 	}
 
+	//HANDLING OFFSCREEN
+	// If it has fallen offscreen, dies
 	if (position.y > 1000)
 	{
 		if (alive)
 		{
-			// For point keeping purposes
 			die();
 		}
 		addToRemoveList();
 	}
+	// If it has moved past the player, reset it if it's a looping level, or delete it otherwise
 	else if (position.x < -200)
 	{
 		if (scene->isLooping())
@@ -143,10 +154,16 @@ void Obstacle::update(Time dt)
 		}
 	}
 
+	// Shocked by lightning - only occurs for one frame for the purpose of making a chain
+	// Dead objects can pass on lightning
 	if (shocked)
 	{
 		shocked = false;
 	}
+
+	// MOVEMENT EFFECTS THAT DO NOT DEPEND ON OBSTACLE BEING ALIVE
+	// Blown by wind move back respective of its size
+	// Clouds are affected much more by this
 	if (blownBack > 0)
 	{
 		if (position.x > scene->player->getPosition().x)
@@ -160,6 +177,7 @@ void Obstacle::update(Time dt)
 		}
 		blownBack -= time;
 	}
+	// Knockback, move back depending on size
 	if (knockedBack > 0)
 	{
 		knockedBack -= time;
@@ -171,6 +189,7 @@ void Obstacle::update(Time dt)
 
 void Obstacle::render(RenderWindow* handle, Vector2f scale)
 {
+	// Obstacle appears slightly blue if slowed or frozen
 	if (frozen > 0)
 	{
 		sprite.setColor(Color(100, 100, 230));
@@ -180,6 +199,7 @@ void Obstacle::render(RenderWindow* handle, Vector2f scale)
 		sprite.setColor(Color(150, 150, 255));
 	}
 
+	// Draws main obstacle image
 	if (texture == nullptr)
 	{
 		CircleShape shape(radius);
@@ -193,6 +213,7 @@ void Obstacle::render(RenderWindow* handle, Vector2f scale)
 		handle->draw(sprite);
 	}
 
+	// Healthbar
 	RectangleShape healthBar(Vector2f(max(0.f, 2 * radius*health / initHealth), radius / 10));
 	if (type != Types::Obstacles::SupplyCrate)
 	{
@@ -200,6 +221,8 @@ void Obstacle::render(RenderWindow* handle, Vector2f scale)
 	}
 	healthBar.setFillColor(Color(50, 150, 50));
 
+	// Stunned makes health bar yellow, burned makes health bar red, poisoned makes
+	// health bar green. Order of precedence is as shown
 	if (stunned > 0)
 	{
 		healthBar.setFillColor(Color(255, 255, 100));
@@ -253,6 +276,8 @@ bool Obstacle::hasCollided(Player* player)
 
 void Obstacle::doCollision(Player* player)
 {
+	// Player handles the taking damage from obstacle, but obstacle
+	// loses the amount of health player has
 	if (alive && player->isAlive())
 	{
 		player->takeDamage(this);
@@ -307,10 +332,12 @@ Vector2f Obstacle::getVelocity()
 
 void Obstacle::die()
 {
+	// To prevent this from being called twice
 	if (!alive)
 	{
 		return;
 	}
+
 	alive = false;
 	scene->addScore(score);
 
@@ -329,8 +356,6 @@ void Obstacle::die()
 		{
 			scene->addMoney(10, position);
 		}
-
-
 	}
 }
 
@@ -348,6 +373,7 @@ void Obstacle::setStats(float speed, float newHealth, float newDamage, bool fade
 	fade = fades;
 	regen = regens;
 
+	// Increase transparency of sprites for faded obstacles
 	if (fades)
 	{
 		sprite.setColor(Color(255, 255, 255, 25));
@@ -400,13 +426,15 @@ void Obstacle::knockback(Vector2f direction)
 
 void Obstacle::shock()
 {
+	// Prevents infinite recursion loops
 	if (shocked)
 	{
 		return;
 	}
 	shocked = true;
 
-	if (type == Types::Obstacles::MrGoose)
+	// Takes damage from lightning, bosses affected less
+	if (type == Types::Obstacles::MrGoose || type == Types::Obstacles::FireballBoss)
 	{
 		health -= initHealth * 0.015;
 	}
@@ -414,6 +442,8 @@ void Obstacle::shock()
 	{
 		health -= initHealth * 0.4;
 	}
+
+	// Checks every obstacle and shocks the ones that haven't been shocked
 	for (int i = 0; i < scene->obstacles.size(); i++)
 	{
 		Obstacle* obstacle = scene->obstacles.at(i);

@@ -26,17 +26,23 @@ public:
 	// Given magnitude and direction, returns vector
 	static Vector2f vector(int magnitude, Vector2f direction);
 
+	// Random float from 0 to 1
 	static float random();
 
+	// Rotates a vector by angle
 	static Vector2f rotate(Vector2f vector, float angle);
 
+	// Gets angle in standard position of vector
 	static float angle(Vector2f vector);
 
+	// Mathematical constant pi
 	static float pi;
 
+	// Scales a vector by factor
 	static Vector2f scale(Vector2i vec, Vector2f factor);
 	static Vector2f scale(Vector2f vec, Vector2f factor);
 
+	// Unscales a vector by factor
 	static Vector2f scaleBack(Vector2i vec, Vector2f factor);
 	static Vector2f scaleBack(Vector2f vec, Vector2f factor);
 

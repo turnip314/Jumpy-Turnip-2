@@ -28,6 +28,8 @@ Player::Player(TextureManager* manager, GameScene* thisScene)
 	parachuteSprite.setTexture(*textureManager->getTexture(Textures::Parachute));
 	parachuteSprite.setOrigin(31.f, 128.f);
 
+	// Colour of text determines if autoshoot / autojump are activated
+
 	autoShootText.setString("A");
 	autoShootText.setCharacterSize(30);
 	autoShootText.setFont(*textureManager->getFont(Fonts::Calibri));
@@ -46,6 +48,9 @@ void Player::update(Time dt)
 
 	if (!alive)
 	{
+		// If turnip is dead, it will keep falling down until it goes off screen, at
+		// which point it gets replaced by a new team member (if one exists, or
+		// else it's game over)
 		if (position.y >= 730 && !scene->isGameOver())
 		{
 			if (type == Types::Players::Biology && upgrades[9] == 2 && Math::random() < 0.15)
@@ -68,6 +73,8 @@ void Player::update(Time dt)
 	}
 
 	// Managing health
+
+	// If offscreen, take damage
 	if (position.y <= 0)
 	{
 		
@@ -78,11 +85,13 @@ void Player::update(Time dt)
 		loseHealth(20 * time * tooLowResistance);
 	}
 
+	// If invincible, update invincibility time
 	if (invincibility > 0)
 	{
 		invincibility -= time;
 	}
 
+	// If regenerate status is on, add health relative to maximum health
 	if (regen)
 	{
 		gainHealth(0.005 * time * (healthCap - health));
@@ -115,16 +124,13 @@ void Player::update(Time dt)
 		abilityReload -= time;
 	}
 
+	// If ability is used up, cancel it
 	if (abilityActivated && abilityTimeLeft <= 0)
 	{
 		cancelAbility();
 	}
-	else
-	{
-		abilityTimeLeft -= time;
-	}
 
-	// Movement
+	// Movement (only applies if turnip isn't paralyzed)
 	if (!paralyzed || paralysisImmunity)
 	{
 		if (jump)
@@ -132,6 +138,7 @@ void Player::update(Time dt)
 			velocity.y = -750;
 			jump = false;
 		}
+		// autojumps when too far down
 		else if (autoJump && position.y > 400)
 		{
 			velocity.y = -800;
@@ -139,14 +146,17 @@ void Player::update(Time dt)
 		}
 		else
 		{
+			// Parachute only applies when turnip is falling and not jetpacked
 			if (parachute && velocity.y > 0 && !jetPack)
 			{
 				velocity.y += 20 * (50 - velocity.y) * time;
 			}
+			// Jetpack causes turnip to aceelerate upwards
 			if (jetPack)
 			{
 				velocity.y -= 1000 * time;
 			}
+			// Turnip falls as normal
 			else
 			{
 				velocity.y += 1500 * time;
@@ -157,6 +167,7 @@ void Player::update(Time dt)
 	}
 	if (paralyzed)
 	{
+		// Lower time left paralzed
 		paralyzeTime -= time;
 		if (paralyzeTime <= 0)
 		{
@@ -166,6 +177,7 @@ void Player::update(Time dt)
 	
 	if (health <= 0)
 	{
+		// Checks death condition
 		alive = false;
 		velocity.y = -250;
 	}
@@ -184,6 +196,7 @@ void Player::render(RenderWindow* handle, Vector2f scale)
 
 	handle->draw(shape);
 
+	// Slightly transparent when invincible
 	if (invincibility > 0)
 	{
 		sprite.setColor(Color(255, 255, 255, 128));
@@ -195,6 +208,7 @@ void Player::render(RenderWindow* handle, Vector2f scale)
 	sprite.setPosition(position);
 	handle->draw(sprite);
 
+	// Render parachute when activated
 	if (parachute)
 	{
 		parachuteSprite.setPosition(Vector2f(position.x, position.y - radius));
@@ -206,6 +220,7 @@ void Player::render(RenderWindow* handle, Vector2f scale)
 	healthBar.setFillColor(Color(50, 150, 50));
 	handle->draw(healthBar);
 
+	// Ability bar of player (grey for fully loaded ability, blue for how much is loaded)
 	RectangleShape abilityBar(Vector2f(300.f, 30.f));
 	abilityBar.setFillColor(Color(200, 200, 210));
 	abilityBar.setPosition(Vector2f(0, 30));
@@ -219,9 +234,8 @@ void Player::render(RenderWindow* handle, Vector2f scale)
 		handle->draw(abilityBar);
 	}
 
-	// Abilities bar
-	
-	
+
+	// Updates text colour to show if autoshoot, autojump is activated
 	if (!autoShootAvailable)
 		autoShootText.setFillColor(Color(128, 128, 128));
 	else if (autoShoot)
@@ -241,6 +255,7 @@ void Player::render(RenderWindow* handle, Vector2f scale)
 
 void Player::renderFrontView(RenderWindow* handle, Vector2f scale, Vector2f pos)
 {
+	// Team display, slightly transparent if player is not alive
 	if (!alive)
 	{
 		frontSprite.setColor(Color(255, 255, 255, 128));
@@ -258,10 +273,12 @@ void Player::processInput(Keyboard::Key key, bool isPressed)
 
 	if (isPressed)
 	{
+		// Space is jump
 		if (key == Keyboard::Space)
 		{
 			jump = true;
 		}
+		// D activates ability
 		else if (key == Keyboard::D)
 		{
 			if (abilityReload <= 0 && abilityAvailable)
@@ -269,16 +286,19 @@ void Player::processInput(Keyboard::Key key, bool isPressed)
 				useAbility();
 			}
 		}
+		// A toggles autoshoot
 		else if (key == Keyboard::A)
 		{
 			if (autoShootAvailable)
 				autoShoot = !autoShoot;
 		}
+		// J toggles autojump
 		else if (key == Keyboard::J)
 		{
 			if (autoJumpAvailable)
 				autoJump = !autoJump;
 		}
+		// W toggles parachute
 		else if (key == Keyboard::W)
 		{
 			if (canParachute)
@@ -286,6 +306,7 @@ void Player::processInput(Keyboard::Key key, bool isPressed)
 				parachute = true;
 			}
 		}
+		// S toggles jetpack
 		else if (key == Keyboard::S)
 		{
 			if (canJetPack)
@@ -297,6 +318,7 @@ void Player::processInput(Keyboard::Key key, bool isPressed)
 	}
 	else
 	{
+		// For release of parachute or jetpack
 		if (key == Keyboard::W)
 		{
 			parachute = false;
@@ -316,6 +338,7 @@ void Player::processInput(Vector2i pos, bool isPressed)
 		return;
 	}
 	
+	// If autoshoot is on, cannot click to shoot unless turnip has multitask
 	if ((multitask || !autoShoot) && isPressed && reload <= 0)
 	{
 		shoot(pos);
@@ -346,11 +369,13 @@ void Player::setHealth(float newHealth)
 
 void Player::resetInitHealth()
 {
+	healthCap *= health / initHealth;
 	initHealth = health;
 }
 
 void Player::resetMovement()
 {
+	// Resets turnip to starting position and velocity
 	velocity.y = 0;
 	position.y = 100;
 	if (rank >= 15)
@@ -381,6 +406,8 @@ bool Player::isParamedic()
 
 void Player::initializeFunctionMaps()
 {
+	// Initializes maps from player type to their respective initialize and shoot functions
+
 	initializeMap[Types::Players::Normie] = &Player::normieInitialize;
 	initializeMap[Types::Players::Math] = &Player::mathInitialize;
 	initializeMap[Types::Players::Physics] = &Player::physInitialize;
@@ -402,7 +429,7 @@ void Player::initializeFunctionMaps()
 
 void Player::initializeStats(Types::Players thisType, int playerUpgrades[12], int thisRank)
 {
-
+	// Sets upgrades and type status of player
 	type = thisType;
 	for (int i = 0; i < 12; i++)
 	{
@@ -452,16 +479,19 @@ void Player::initializeStats(Types::Players thisType, int playerUpgrades[12], in
 	}
 	sprite.setOrigin(45.f, 45.f);
 
+	// Initializes all conditions to default value
 	regen = false;
 	canJetPack = false;
 	canParachute = false;
 	paralyzed = false;
 	abilityAvailable = false;
 
+	// Initializes turnip stats
 	(this->*initializeMap[type])();
 
 	rank = thisRank;
 
+	// Turnip gets boosts based on rank (see game docs for more info)
 	if (rank >= 5)
 	{
 		autoShootAvailable = true;
@@ -543,6 +573,7 @@ void Player::initializeStats(Types::Players thisType, int playerUpgrades[12], in
 	shotSpeed *= (1 + (rank - 1) / 200.0);
 	reloadTime /= (1 + (rank - 1) / 300.0);
 
+	// Health cap is 1.5 times initial health, unless bio turnip has the upgrade that increases it
 	if (!(type == Types::Players::Biology && upgrades[6] == 2))
 	{
 		healthCap = 1.5 * health;
@@ -561,11 +592,13 @@ void Player::takeDamage(Obstacle* obstacle)
 
 	float thisDamage = obstacle->getDamage();
 
+	// Engineer shield weakens upon each hit
 	shield *= 0.92;
 
 	thisDamage *= resistance;
 	thisDamage *= 1 - shield;
 
+	// Damage is lessened based on resistance to certain obstacle types
 	if (obstacle->getType() == Types::Obstacles::Bird ||
 		obstacle->getType() == Types::Obstacles::Eagle ||
 		obstacle->getType() == Types::Obstacles::Flappy ||
@@ -583,6 +616,7 @@ void Player::takeDamage(Obstacle* obstacle)
 	}
 	loseHealth(min(thisDamage, obstacle->getHealth()));
 
+	// Normie turnip's upgrade that activates ability when it is hit
 	if (type == Types::Players::Normie && upgrades[11] == 2 && !abilityActivated && abilityReload >= 3.f)
 	{
 		float tempReload = abilityReload;
@@ -594,11 +628,13 @@ void Player::takeDamage(Obstacle* obstacle)
 
 void Player::useAbility()
 {
+	// Activates the ability of the player
 	abilityActivated = true;
 	abilityReload = abilityReloadTime;
 
 	if (type == Types::Players::Normie)
 	{
+		// Normie gets boosted stats
 		abilityTimeLeft = 4;
 		reloadTime /= 2;
 		autoReloadTime /= 2;
@@ -608,16 +644,19 @@ void Player::useAbility()
 	}
 	else if (type == Types::Players::Math)
 	{
+		// Math gets double shots and increased damage
 		damage *= 1.25f;
 		abilityTimeLeft = 8;
 	}
 	else if (type == Types::Players::Physics)
 	{
+		// Shoots wrecking ball
 		shoot(mouseHoverLocation);
 		abilityActivated = false;
 	}
 	else if (type == Types::Players::Chemistry)
 	{
+		// Freezes all obstacles and removes fade effect
 		for (int i = 0; i < scene->obstacles.size(); i++)
 		{
 			Obstacle* obstacle = scene->obstacles[i];
@@ -636,6 +675,7 @@ void Player::useAbility()
 	}
 	else if (type == Types::Players::Biology)
 	{
+		// Bio turnip deals damage to and poisons all birds, drains health from them
 		for (int i = 0; i < scene->obstacles.size(); i++)
 		{
 			Obstacle* obstacle = scene->obstacles[i];
@@ -652,6 +692,7 @@ void Player::useAbility()
 	}
 	else if (type == Types::Players::Geology)
 	{
+		// Meteor shower: projectiles fall from above
 		for (int i = 0; i < 40; i++)
 		{
 			Vector2f vel = Vector2f(10.f * (0.5 - Math::random()), 0.f);
@@ -664,13 +705,14 @@ void Player::useAbility()
 	}
 	else if (type == Types::Players::Engineer)
 	{
+		// Shoots 10 times faster for a short burst
 		reloadTime /= 10;
 		autoReloadTime /= 10;
 		abilityTimeLeft = 4;
 	}
 	else if (type == Types::Players::Nature)
 	{
-		// Blow back
+		// Blows back all obstacles
 		if (upgrades[3] == 2)
 		{
 			for (int i = 0; i < scene->obstacles.size(); i++)
@@ -680,7 +722,7 @@ void Player::useAbility()
 			}
 		}
 
-		// Lightning
+		// Lightning strike to nearest obstacle
 		if (upgrades[7] == 2)
 		{
 			if (scene->obstacles.size() > 0)
@@ -706,7 +748,7 @@ void Player::useAbility()
 			}
 		}
 
-		// Storm
+		// Rain projectiles fall from above
 		if (upgrades[11] == 2)
 		{
 			for (int i = 0; i < 40; i++)
@@ -726,6 +768,7 @@ void Player::useAbility()
 
 void Player::cancelAbility()
 {
+	// Disables ability and resets turnip stats if necessary
 	abilityActivated = false;
 	if (type == Types::Players::Normie)
 	{
@@ -751,6 +794,9 @@ void Player::cancelAbility()
 }
 
 // INITIALIZE MAPS
+// Adjusts stats for each turnip based on upgrades
+// See game docs for more info
+
 void Player::normieInitialize()
 {
 	// Base stats
@@ -1297,6 +1343,8 @@ void Player::natureInitialize()
 }
 
 // SHOT MAPS
+// Adjusts stots for each turnip based on upgrades
+// See game docs for more info
 
 void Player::normieShoot(Vector2i pos)
 {
@@ -1614,9 +1662,10 @@ void Player::setDamage(float newDamage)
 
 void Player::drain(Time dt)
 {
-	if (health >= 5)
+	// For impossible difficulty
+	if (health >= 4)
 	{
-		loseHealth(0.02 * (health)* dt.asSeconds());
+		loseHealth(0.025 * (health)* dt.asSeconds());
 	}
 }
 
@@ -1631,6 +1680,7 @@ void Player::loseHealth(float amount)
 
 void Player::gainHealth(float amount)
 {
+	// Increases health by amount, but checks to make sure it doesn't surpass health cap
 	health += amount;
 	if (health >= healthCap)
 	{

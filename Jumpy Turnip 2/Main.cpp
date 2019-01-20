@@ -12,6 +12,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 {
 	TextureManager manager;
 
+	// LOADS ALL TEXTURES
+
 	// Birds and obstacles
 	manager.load(Textures::Bird1, "Images/birdblue.png");
 	manager.load(Textures::Bird2, "Images/birdorange.png");

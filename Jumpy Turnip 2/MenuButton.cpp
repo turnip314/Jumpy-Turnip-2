@@ -12,6 +12,7 @@ MenuButton::MenuButton(Types::Buttons buttonAction, TextureManager* manager, Gam
 {
 	action = buttonAction;
 
+	// Home screen large button texture
 	if (buttonAction == Types::Buttons::AdventureButton ||
 		buttonAction == Types::Buttons::UpgradeMenuButton ||
 		buttonAction == Types::Buttons::TeamButton || 
@@ -20,6 +21,7 @@ MenuButton::MenuButton(Types::Buttons buttonAction, TextureManager* manager, Gam
 		mainButton.setTexture(*textureManager->getTexture(Textures::menuButton));
 		scaledButton.setTexture(*textureManager->getTexture(Textures::menuButtonS));
 	}
+	// Navigation small button texture
 	else if (buttonAction == Types::Buttons::BackButton ||
 		buttonAction == Types::Buttons::NextLevelsButton ||
 		buttonAction == Types::Buttons::PrevLevelsButton ||
@@ -34,7 +36,6 @@ MenuButton::MenuButton(Types::Buttons buttonAction, TextureManager* manager, Gam
 
 MenuButton::~MenuButton()
 {
-	// Destroy all buttons objects here
 
 }
 
@@ -42,6 +43,7 @@ void MenuButton::processInput(Keyboard::Key key, bool isPressed)
 {
 	if (isPressed && key == Keyboard::Escape)
 	{
+		// Pause and escape are equivalent
 		if (action == Types::Buttons::PauseButton)
 		{
 			doButtonAction();
@@ -52,6 +54,7 @@ void MenuButton::processInput(Keyboard::Key key, bool isPressed)
 
 void MenuButton::processInput(Vector2i pos, bool isPressed)
 {
+	// If the mouse is clicked while hovering over button position, call do button action
 	if (isPressed && (pos.x < 0 || pos.x > 1280 || pos.y < 0 || pos.y > 720))
 	{
 		if (action == Types::Buttons::PauseButton)
@@ -64,6 +67,7 @@ void MenuButton::processInput(Vector2i pos, bool isPressed)
 
 void MenuButton::doButtonAction()
 {
+	// Does button action based on button type
 	if (action == Types::Buttons::AdventureButton)
 	{
 		game->openLevelSelection();
@@ -110,6 +114,9 @@ void MenuButton::doButtonAction()
 
 void MenuButton::confirmButtonAction(Types::Confirm confirm)
 {
+	// Only for buttons that invoke a message panel confirmation
+	// Does another set of actions
+
 	// Pause button can only exist for game scene
 	if (action == Types::Buttons::PauseButton)
 	{

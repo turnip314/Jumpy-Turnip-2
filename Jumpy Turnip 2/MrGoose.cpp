@@ -5,6 +5,7 @@
 MrGoose::MrGoose(Types::Obstacles thisType, Texture* textureClosed, Texture* textureOpen, Texture* thisFireballTexture1, Texture* thisFireballTexture2, GameScene* thisScene) :
 	Bird(thisType, textureClosed, thisScene)
 {
+	// Mr Goose shoots fireballs so it needs to store the fireball textures
 	radius = 100;
 	attackPhase = 10;
 	fireballTexture1 = thisFireballTexture1;
@@ -23,13 +24,14 @@ void MrGoose::update(Time dt)
 {
 	float time = dt.asSeconds();
 
+	// To prevent the staying in center function from taking action
 	if (!alive)
 	{
 		Obstacle::update(dt);
 		return;
 	}
 
-	// cools down much faster than other obstacles
+	// Effects cool down much faster than other obstacles
 	if (frozen > 0)
 	{
 		frozen -= 5 * time;
@@ -47,6 +49,8 @@ void MrGoose::update(Time dt)
 		poisoned -= 5 * time;
 	}
 
+	// Prevents Mr Goose from being knocked too far off course, will move up and down at
+	// fixed height
 	if (position.y < 250.f)
 	{
 		velocity.y = -velocity.x * 0.8;
@@ -56,6 +60,7 @@ void MrGoose::update(Time dt)
 		velocity.y = velocity.x * 0.8;
 	}
 
+	// Will attack when attackPhase goes to 0
 	if (attackPhase > 0)
 	{
 		attackPhase -= time;
@@ -79,7 +84,8 @@ void MrGoose::update(Time dt)
 
 	Obstacle::update(dt);
 
-	if (position.x <= 0)
+	// If goes too far
+	if (position.x <= -40)
 	{
 		// game over
 		scene->endGame();
@@ -92,7 +98,7 @@ void MrGoose::attack()
 	sprite.setTexture(*attackTexture);
 	sprite.setOrigin(348.f, 96.f);
 
-	// Add fireballs
+	// Add fireballs for attack
 	for (int i = 0; i < 3; i++)
 	{
 		Texture* fireballTexture;
@@ -117,13 +123,13 @@ void MrGoose::attack()
 void MrGoose::die()
 {
 	Obstacle::die();
-	scene->setBossKilled();
 	scene->addMoney(100, position);
 	scene->setBossKilled();
 }
 
 void MrGoose::setStats(float speed, float newHealth, float newDamage, bool fades, bool regens)
 {
+	// Adjusts stats
 	Bird::setStats(speed, newHealth, newDamage, fades, regens);
 	score *= 500.f;
 	health *= 7500;
@@ -134,6 +140,8 @@ void MrGoose::setStats(float speed, float newHealth, float newDamage, bool fades
 	position.x = 1600;
 	sprite.setOrigin(266.f, 96.f);
 }
+
+// Mr Goose has a rectangular hit box
 
 bool MrGoose::hasCollided(Projectile* projectile)
 {
@@ -149,5 +157,6 @@ bool MrGoose::hasCollided(Player* player)
 
 void MrGoose::knockback(Vector2f direction)
 {
+	// Mr Goose only effected by knockback 25% as much
 	Obstacle::knockback(Math::scale(direction, Vector2f(0.25f, 0.25f)));
 }

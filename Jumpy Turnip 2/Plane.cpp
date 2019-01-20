@@ -18,8 +18,10 @@ void Plane::setStats(float speed, float newHealth, float newDamage, bool fades, 
 {
 	Obstacle::setStats(speed, newHealth, newDamage, fades, regens);
 
+	// Center of hitbox
 	sprite.setOrigin(160.f, 60.f);
 
+	// Adjusts stats of plane
 	score = 30 * sqrt(speed*newHealth*newDamage);
 	if (fades)
 	{
@@ -37,6 +39,8 @@ void Plane::setStats(float speed, float newHealth, float newDamage, bool fades, 
 	damage *= 80;
 	
 }
+
+ // Plane has a rectangular hit box
 
 bool Plane::hasCollided(Projectile* projectile)
 {

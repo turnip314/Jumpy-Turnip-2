@@ -19,11 +19,14 @@ class Game
 public:
 	Game(TextureManager &textureManager);
 	void run();
+
+	// Width/Height ratio is relative to default window size of 1080p by 720p
 	static float getWidthRatio();
 	static float getHeightRatio();
 	static float widthRatio;
 	static float heightRatio;
 
+	// Special levels
 	const int fireballBossLevel = 14;
 	const int mrGooseBossLevel = 29;
 	const int freeplayNoLoopLevel = 30;
@@ -31,8 +34,10 @@ public:
 	const int freeplayTimeNoLoopLevel = 32;
 	const int freeplayTimeLoopLevel = 33;
 
+	// Delete top scene of stack
 	void closeScene();
 
+	// Functions for opening different menus
 	void loadMainMenu();
 	void openLevelSelection();
 	void openUpgradeMenu();

@@ -16,15 +16,14 @@ Menu::Menu(TextureManager* manager)
 
 Menu::~Menu()
 {
+	// Destructor deletes all button and panel pointers
 	while (buttons.size() > 0)
 	{
-		// ADD destructor of object
 		delete buttons.at(0);
 		buttons.erase(buttons.begin());
 	}
 	while (panels.size() > 0)
 	{
-		// ADD destructor of object
 		delete panels.at(0);
 		panels.erase(panels.begin());
 	}
@@ -32,6 +31,7 @@ Menu::~Menu()
 
 void Menu::update(Time dt)
 {
+	// Everything else is paused when a message panel is up
 	if (panels.size() > 0)
 	{
 		for (unsigned i = 0; i < panels.size(); i++)
@@ -124,6 +124,8 @@ void Menu::addButton(ButtonObject* button)
 
 void Menu::addImage(Textures::ID ID, Vector2f pos)
 {
+	// Creates sprite with given texture, sets it to desired position and
+	// stored in sprite list
 	Sprite newSprite;
 	newSprite.setTexture(*textureManager->getTexture(ID));
 	newSprite.setPosition(pos);
@@ -132,6 +134,7 @@ void Menu::addImage(Textures::ID ID, Vector2f pos)
 
 void Menu::addImage(Textures::ID ID, Vector2f pos, Color color)
 {
+	// Overloaded function that takes color as a factor
 	Sprite newSprite;
 	newSprite.setTexture(*textureManager->getTexture(ID));
 	newSprite.setPosition(pos);
@@ -151,6 +154,8 @@ void Menu::addPanelToRemove(MessagePanel* panel)
 
 void Menu::setText(string text, Vector2f pos, Fonts::ID fontID, int fontSize, Color color)
 {
+	// Creates a new text object with the properties string, position, font, size, color
+	// and stores it in a text list
 	Text line;
 	line.setString(text);
 	line.setPosition(pos);

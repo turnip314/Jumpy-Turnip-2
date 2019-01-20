@@ -5,6 +5,7 @@
 Lightning::Lightning(Types::Entities thisType, Texture* texture, GameScene* thisScene, Vector2f thisSource, Vector2f thisTarget):
 	Entity(thisType, texture, thisScene)
 {
+	// Lightning is basically a yellow line connecting the source and target
 	source = thisSource;
 	target = thisTarget;
 	float length = Math::distance(source, target);

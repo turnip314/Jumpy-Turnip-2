@@ -22,6 +22,7 @@ float Game::heightRatio = VideoMode::getDesktopMode().height / 1080.0;
 
 Game::Game(TextureManager &textureManager) : window(VideoMode(1280 * widthRatio, 720 * heightRatio), "RPG Game")
 {
+	// Reads all saved information from fileIO
 	loadLevels();
 	loadUpgrades();
 	loadProgress();
@@ -30,22 +31,25 @@ Game::Game(TextureManager &textureManager) : window(VideoMode(1280 * widthRatio,
 	// Initializes texture map
 	initializeTextureMaps();
 
-	// Initializes windows
+	// Initializes window
 	window.setFramerateLimit(360);
 	window.setKeyRepeatEnabled(false);
 	window.setTitle("Jumpy Turnip");
 	window.setMouseCursorVisible(false);
 
+	// Scales the viewsize based on screen resolution, so it takes up same ratio of the screen
 	View scaledView(FloatRect(0, 0, 1280, 720));
 	scaledView.setViewport(sf::FloatRect(0, 0, 1, 1));
 	window.setView(scaledView);
 
+	// Window icon
 	Image icon;
 	icon.loadFromFile("Images/turnip.png");
 	window.setIcon(50, 55, icon.getPixelsPtr());
 	manager = textureManager;
 	loadMainMenu();
 
+	// Stores image scaling factors in case needed
 	defaultSize = Vector2i(1280, 720);
 	mainSize = Vector2i(1280*Game::getWidthRatio(), 720*Game::getHeightRatio());
 	clickScaleFactor = Vector2f(Game::getWidthRatio(), Game::getHeightRatio());
@@ -56,6 +60,7 @@ Game::Game(TextureManager &textureManager) : window(VideoMode(1280 * widthRatio,
 
 void Game::run()
 {
+	// Main function that calls each frame
 	Clock clock;
 	while (window.isOpen())
 	{
@@ -71,7 +76,7 @@ void Game::processEvents()
 	
 	Vector2i mousePos = Mouse::getPosition(window);
 
-
+	// Polls all events and sends event information to classes that need them
 	Event windowEvent;
 	while (window.pollEvent(windowEvent))
 	{
@@ -98,6 +103,8 @@ void Game::processEvents()
 			break;
 		}
 	}
+
+	// Sends mouse hover location
 	scenes.top()->processInput((Vector2i) Math::scaleBack(Mouse::getPosition(window), clickScaleFactor), false);
 	cursorSprite.setPosition(Math::scaleBack(Mouse::getPosition(window), clickScaleFactor));
 }
@@ -117,8 +124,10 @@ void Game::render()
 
 void Game::deleteObjects()
 {
+	// Garbage collection, gets rid of objedcts/pointers no longer necessary
 	scenes.top()->deleteObjects();
 
+	// Close scenes if needed at the very end of a frame loop to avoid possible errors
 	if (closeCurrentScene)
 	{
 		closeTopScene();
@@ -145,6 +154,7 @@ void Game::deleteObjects()
 
 void Game::readjustScale()
 {
+	// Gets new window size to default size ratio, called in case of a window resize
 	clickScaleFactor.x = window.getSize().x / 1280.f;
 	clickScaleFactor.y = window.getSize().y / 720.f;
 }
@@ -166,6 +176,8 @@ Scene* Game::getCurScene()
 
 Textures::ID Game::getPlayerTextureID(Types::Players playerType, Types::Sizes size)
 {
+	// Returns player texture based on type and size
+	// Multiple player textures are stored to avoid bad looking images from rescaling
 	if (playerType == Types::Players::PlayersEND)
 	{
 		if (size == Types::Sizes::MediumScaled)
@@ -203,8 +215,10 @@ Textures::ID Game::getPlayerTextureID(Types::Players playerType, Types::Sizes si
 void Game::loadMainMenu()
 {
 	// Initializes Main Menu
-	int i = 1;
 	Menu* mainMenu = new Menu(&manager);
+
+
+	// The four main buttons on the main menu are initialized here
 
 	MenuButton* playButton = new MenuButton(Types::Buttons::AdventureButton, &manager, this,
 		Vector2f(200, 80), Vector2f(440, 180));
@@ -252,6 +266,8 @@ void Game::closeTopScene()
 	closeCurrentScene = false;
 }
 
+// The next two functions are for scrolling through the level selection menu
+
 void Game::prevLevelPage()
 {
 	levelPage = (levelPage + 3) % 4;
@@ -268,6 +284,7 @@ void Game::openLevelSelection()
 {
 	Menu* lvlSelectionMenu = new Menu(&manager);
 
+	// Level pages 0, 1, and 2 are the main level buttons from 1 to 30
 	if (levelPage <= 2)
 	{
 		for (int i = 0; i < 10; i++)
@@ -281,6 +298,7 @@ void Game::openLevelSelection()
 			lvlSelectionMenu->addButton(lvlButton);
 		}
 	}
+	// Level page 3 are the freeplay levels
 	else
 	{
 		LevelButton* noLoopButton = new LevelButton(30, levelScores[30], this, &manager,
@@ -304,6 +322,7 @@ void Game::openLevelSelection()
 		lvlSelectionMenu->addButton(loopTimeButton);
 	}
 
+	// Previous and next page buttons for scrolling through the level selection pages
 	MenuButton* prevPageButton = new MenuButton(Types::Buttons::PrevLevelsButton, &manager, this,
 		Vector2f(200, 600), Vector2f(300, 700));
 	MenuButton* nextPageButton = new MenuButton(Types::Buttons::NextLevelsButton, &manager, this,
@@ -313,6 +332,7 @@ void Game::openLevelSelection()
 	lvlSelectionMenu->addButton(prevPageButton);
 	lvlSelectionMenu->addButton(nextPageButton);
 
+	// Exit menu button
 	MenuButton* backButton = new MenuButton(Types::Buttons::BackButton, &manager, this,
 		Vector2f(20, 40), Vector2f(140, 90));
 	backButton->setText(Fonts::Calibri, 35, "Back");
@@ -322,6 +342,8 @@ void Game::openLevelSelection()
 
 	scenes.push(lvlSelectionMenu);
 }
+
+// The next two functions are for scrolling through the upgrade menu
 
 void Game::prevUpgradePage()
 {
@@ -354,9 +376,11 @@ void Game::openUpgradeMenu(Types::Players playerType)
 	upgradeMenu->setText(playerNames[playerType], Vector2f(40, 500), Fonts::Calibri, 30, Color::White);
 	upgradeMenu->setText("Rank: " + to_string(playerRanks[playerType].rank), Vector2f(40, 535), Fonts::Calibri, 30, Color::White);
 	
+	// Each page is for a specific turnip, and that turnip is drawn to the left
 	Textures::ID displayTexture = static_cast<Textures::ID>(Textures::NormieHuge + playerType);
 	upgradeMenu->addImage(displayTexture, Vector2f(20.f, 140.f));
 
+	// Creates the array of upgrade buttons
 	for (int i = 0; i < 12; i++)
 	{
 		float xPos = 320 + 220 * (i % 4);
@@ -369,6 +393,8 @@ void Game::openUpgradeMenu(Types::Players playerType)
 		upgradeMenu->addButton(upgradeButton);
 	}
 
+
+	// Button to exist Menu
 	MenuButton* backButton = new MenuButton(Types::Buttons::BackButton, &manager, this,
 		Vector2f(20, 40), Vector2f(140, 90));
 	backButton->setText(Fonts::Calibri, 35, "Back");
@@ -387,6 +413,7 @@ void Game::openUpgradeMenu(Types::Players playerType)
 	upgradeMenu->addButton(prevButton);
 	upgradeMenu->addButton(nextButton);
 
+	// Explains how upgrade work for people playing for the first time
 	addTutorialPanel(upgradeMenu, Types::Tutorials::UpgradesIntro);
 
 	scenes.push(upgradeMenu);
@@ -394,16 +421,19 @@ void Game::openUpgradeMenu(Types::Players playerType)
 
 string Game::getPlayerName(Types::Players playerType)
 {
+	// String of player name rather than enum type
 	return playerNames[playerType];
 }
 
 void Game::setCurSelection(Types::Players playerType)
 {
+	// For team menu only, sets which turnip is selected (to switch positions in the team)
 	curSelected = playerType;
 }
 
 Types::Players Game::getCurSelection()
 {
+	// For team menu only, gets which turnip is selected (to switch positions in the team)
 	return curSelected;
 }
 
@@ -415,10 +445,12 @@ void Game::swapTeamPosition(Types::Players p1, Types::Players p2)
 		return;
 	}
 
+	// Swaps the position of two turnips in their respective team slots
 	int p1Status = teamStatus[p1];
 	teamStatus[p1] = teamStatus[p2];
 	teamStatus[p2] = p1Status;
 
+	// Reloads menu and resets selection
 	refreshTeam = true;
 	curSelected = Types::Players::PlayersEND;
 }
@@ -439,6 +471,8 @@ void Game::buyNewSlot()
 			unlockSize -= 1;
 		}
 	}
+
+	// You can't have more team slots than the number of turnips you have unlocked
 	if (unlockSize <= teamSize)
 	{
 		// Can't buy new slot - not enough team members
@@ -446,12 +480,17 @@ void Game::buyNewSlot()
 		noSlotPanel->setMessage("Unlock more turnips before buying this slot");
 		scenes.top()->addPanel(noSlotPanel);
 	}
+
+	// Cost of unlocking a team slot increases exponentially with how many you have
 	else if (money < 10 * ((int) (pow((teamSize + 2), 5) / 10)))
 	{
 		MessagePanel* noMoneyPanel = new MessagePanel(MessagePanel::CANCEL, scenes.top(), &manager, Vector2f(100, 100));
 		noMoneyPanel->setMessage("You can't afford this");
 		scenes.top()->addPanel(noMoneyPanel);
 	}
+
+	// Otherwise, buys a new slot and places any available turnip in that slot
+	// Refreshes menu
 	else
 	{
 		refreshTeam = true;
@@ -471,9 +510,13 @@ void Game::buyNewSlot()
 
 void Game::buyNewPlayer(Types::Players playerType)
 {
+	// Each locked player costs $500 to unlock
 	if (spendMoney(500))
 	{
+		// 0 is unlocked
 		teamStatus[playerType] = 0;
+
+		// unlocks all first tier upgrades
 		for (int i = 0; i < 3; i++)
 		{
 			playerUpgrades[playerType][4*i] = 1;
@@ -497,15 +540,18 @@ void Game::openTeamMenu()
 {
 	curSelected = Types::Players::PlayersEND;
 
+
+	// Creates menu
 	Menu* teamMenu = new Menu(&manager);
 
+	// Button for exiting menu
 	MenuButton* backButton = new MenuButton(Types::Buttons::BackButton, &manager, this,
 		Vector2f(20, 40), Vector2f(140, 90));
 	backButton->setText(Fonts::Calibri, 35, "Back");
 	backButton->centerText();
 	teamMenu->addButton(backButton);
 
-	// The eight slots for turnips displayed here
+	// The eight slots for buying / seeing available turnips displayed here
 	for (int i = 0; i < 8; i++)
 	{
 		// Make eight player buttons, initialize with player use/unlock status
@@ -518,6 +564,9 @@ void Game::openTeamMenu()
 		teamMenu->addButton(playerButton);
 	}
 
+	// The team quene is displayed here, done by searching through each player to see their
+	// Team status. Status 1 goes in first slot, 2 in second, so on.
+	// 0 is unlocked but not in team, and -1 is locked
 	for (int i = 1; i <= teamSize; i++)
 	{
 		// Makes buttons for team member slots
@@ -541,6 +590,8 @@ void Game::openTeamMenu()
 		teamMenu->addButton(teamSlotButton);
 	}
 
+	// Theoretically you can have all turnips in the team and can keep unlocking
+	// new slots until you have a slot for each turnip. Draw a lock button to show that
 	if (teamSize < Types::Players::PlayersEND)
 	{
 		float xPos = 640 - 75 * (min((int)Types::Players::PlayersEND, (teamSize + 1))) + 150 * teamSize;
@@ -559,6 +610,8 @@ void Game::openTeamMenu()
 
 void Game::openCreditMenu()
 {
+	// Basically a short summary of the project and some thank-you notes
+
 	Menu* creditMenu = new Menu(&manager);
 
 	MenuButton* backButton = new MenuButton(Types::Buttons::BackButton, &manager, this,
@@ -590,15 +643,17 @@ void Game::openCreditMenu()
 
 void Game::startNewGame(int level, int difficulty)
 {
-	Texture *backgroundTexture = manager.getTexture(Textures::Background1);
 	GameScene* gameScene = new GameScene(this, &manager);
 
+	// Button for pausing game located at bottom right corner
 	MenuButton* pauseButton = new MenuButton(Types::Buttons::PauseButton, &manager, this,
 		Vector2f(1140, 640), Vector2f(1240, 710));
 	pauseButton->setText(Fonts::Calibri, 35, "_Pause");
 	gameScene->addButton(pauseButton);
 
-	// Set team
+	// Game scene will have a list of players in the team in order
+	// This list is created here by seeing which turnips are in the team and creating
+	// that new player object
 	vector<Player*> playerTeam;
 	for (int i = 1; i <= teamSize; i++)
 	{
@@ -618,12 +673,14 @@ void Game::startNewGame(int level, int difficulty)
 			playerRanks[playerType].rank);
 		playerTeam.push_back(player);
 
+		// When you first unlock an ability, there will be an intro to explain how to use it
 		if (playerUpgrades[playerType][7] == 2 ||
 			((playerUpgrades[playerType][3] == 2 || playerUpgrades[playerType][11] == 2) && playerType == Types::Players::Nature))
 		{
 			addTutorialPanel(gameScene, Types::Tutorials::AbilityIntro);
 		}
 	}
+
 	gameScene->makeTeam(teamSize, playerTeam);
 	gameScene->setPlayer(playerTeam.at(0));
 
@@ -769,7 +826,7 @@ void Game::startNewGame(int level, int difficulty)
 	{
 		addTutorialPanel(gameScene, Types::Tutorials::TeamPlayIntro);
 	}
-	// For boss level
+	// For final boss level, create mr goose and push to front of obstacle list
 	if (level == 29)
 	{
 		MrGoose* goose = new MrGoose(Types::Obstacles::MrGoose,
@@ -788,6 +845,8 @@ void Game::startNewGame(int level, int difficulty)
 
 void Game::addTutorialPanel(Scene* scene, Types::Tutorials tutorialType)
 {
+	// Checks if a tutorial has already been displayed, and if not add a tutorial panel
+	// to the respective scene
 	if (!tutorialReadStatus[tutorialType])
 	{
 		string message = tutorialMessages[tutorialType];
@@ -1060,6 +1119,7 @@ void Game::loadMessages()
 
 	messageFile >> noskipws;
 
+	// Read tutorials file and saves up to the first @ in a string
 	string allTutorials;
 	while (true) {
 		char x;
@@ -1073,8 +1133,10 @@ void Game::loadMessages()
 			allTutorials += x;
 		}
 	}
-	vector<string> tutorialList = TextBox::splitString(allTutorials, '#');
 
+	// Stores each line in a list and matches them to the corresponding tutorial
+	vector<string> tutorialList = TextBox::splitString(allTutorials, '#');
+	
 	for (int i = 0; i < Types::Tutorials::TutorialsEND; i++)
 	{
 		Types::Tutorials tutorialType = static_cast<Types::Tutorials>(i);
@@ -1096,6 +1158,7 @@ void Game::loadMessages()
 		}
 	}
 
+	// Same as tutorials but for rank up messages for each turnip
 	vector<string> rankUpList = TextBox::splitString(allRankUps, '#');
 	for (int i = 0; i < numImportantRanks; i++)
 	{
@@ -1132,10 +1195,14 @@ void Game::saveProgress()
 
 	upgradeFile.close();
 	
+	// Saves progress in same order the progress file is read
 	ofstream progressFile;
 	progressFile.open("Saves/progress.txt");
+
+	// Saves money first
 	progressFile << money << endl;
 	
+	// Saves the rank of each player
 	for (int i = 0; i < Types::Players::PlayersEND; i++)
 	{
 		Types::Players playerType = static_cast<Types::Players>(i);
@@ -1143,6 +1210,7 @@ void Game::saveProgress()
 		progressFile << playerRanks[playerType].xp << endl;
 	}
 	
+	// Team size and player status
 	while (teamSize == 11);
 	progressFile << teamSize << " ";
 
@@ -1153,6 +1221,7 @@ void Game::saveProgress()
 
 	progressFile << endl;
 
+	// Status and high score of each level
 	for (int i = 0; i < numLevels; i++)
 	{
 		LevelScores curLevel = levelScores[i];
@@ -1163,6 +1232,7 @@ void Game::saveProgress()
 		progressFile << curLevel.impossibleScore << endl;
 	}
 
+	// Stores which tutorials have been shown
 	for (int i = 0; i < Types::Tutorials::TutorialsEND; i++)
 	{
 		Types::Tutorials tutorialType = static_cast<Types::Tutorials>(i);
@@ -1207,6 +1277,7 @@ bool Game::spendMoney(int cost)
 
 void Game::initializeTextureMaps()
 {
+	// Matches each enum player type to the string representing their names
 	playerNames[Types::Players::Normie] = "Normie Turnip";
 	playerNames[Types::Players::Math] = "Math Turnip";
 	playerNames[Types::Players::Physics] = "Physics Turnip";
@@ -1218,9 +1289,10 @@ void Game::initializeTextureMaps()
 	playerNames[Types::Players::PlayersEND] = "Locked";
 }
 
-// End game
 void Game::updateHighScore(int level, int newScore, int timeElapsed, int difficulty)
 {
+	// If called, replaces current score on a given level and difficulty with new score
+	// For timed modes, timeElapsed is used as the score instead
 	if (level == freeplayTimeLoopLevel || level == freeplayTimeNoLoopLevel)
 	{
 		newScore = timeElapsed;
@@ -1245,6 +1317,11 @@ void Game::updateHighScore(int level, int newScore, int timeElapsed, int difficu
 
 void Game::updateXp(vector<Player*> players, float factor)
 {
+	// Each player keeps track of how much xp they gain in game
+	// This function checks how much the player has gained and multiples that by
+	// xp factor. Adds this to the status of that player to be saved in progress
+	// If the player has enough xp to level up (quadratic function of level), 
+	// perform the level up until the player can no longer level up
 	for (int i = 0; i < players.size(); i++)
 	{
 		Types::Players playerType = players.at(i)->getType();
@@ -1279,6 +1356,8 @@ void Game::addMoney(int moneyGain)
 
 void Game::updateLevelStatus(int level)
 {
+	// Called when a level is beaten on a certain difficulty for the first time
+	// Updates status and on special levels (boss levels), may also unlock freeplay
 	levelScores[level].levelStatus++;
 	if (level < freeplayNoLoopLevel && levelScores[level + 1].levelStatus == 0)
 	{
@@ -1299,6 +1378,7 @@ void Game::updateLevelStatus(int level)
 
 void Game::closeGame()
 {
+	// Close current game scene
 	closeCurrentScene = true;
 	refreshLevels = true;
 }

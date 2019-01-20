@@ -90,6 +90,7 @@ private:
 	bool jetPack;
 
 	// Speed health damage stuff
+
 	float initHealth;
 	float health;
 	float healthCap;
@@ -99,6 +100,10 @@ private:
 	float autoReloadTime;
 	float autoReload;
 	
+	// Resistance
+	// Either overall resistance or resistance to specific types of damage
+	// Note: due to janky naming, lower resistance is actually better
+
 	float resistance = 1;
 	float birdResistance = 1;
 	float fireballResistance = 1;
@@ -109,7 +114,8 @@ private:
 	float switchResistance = 1;
 	float shield;
 
-	// Ability
+	// Ability related stuff
+
 	bool abilityAvailable;
 	float abilityReloadTime; // max
 	float abilityReload;
@@ -117,6 +123,7 @@ private:
 	float abilityTimeLeft;
 
 	// The following are for the purposes of creating projectiles only
+
 	float damage;
 	int shotPierce = 1;
 	float bulletSize;
@@ -129,6 +136,7 @@ private:
 	Vector2i mouseHoverLocation;
 
 	// Other upgrade stuff
+
 	bool multitask;
 
 	// starting out invincible
@@ -140,19 +148,30 @@ private:
 	Vector2f velocity;
 	Vector2f position;
 	Texture* playerTexture;
+
+	// Texture related things
+
 	TextureManager* textureManager;
 	Sprite sprite;
 	Sprite frontSprite;
 	Sprite parachuteSprite;
+
+	// For interactions
+
 	GameScene* scene;
 	Types::Players type;
+
+	// Display text
 
 	Text autoShootText;
 	Text autojumpText;
 
 	// Maps of type to respective function
+
 	map<Types::Players, shootFunction> shootMap;
 	map<Types::Players, initializeFunction> initializeMap;
+
+	// Stats effected externally
 
 	int upgrades[12];
 	int rank;

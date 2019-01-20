@@ -5,9 +5,11 @@
 Fireball::Fireball(Types::Obstacles thisType, Texture* texture, Texture* thisSplitTexture, GameScene* thisScene) :
 	Obstacle(thisType, texture, thisScene)
 {
+	// A newly spawned fireball can split into smaller fireballs
 	split = true;
 	splitTexture = thisSplitTexture;
 
+	// Default sizes for fireball and fireball boss
 	if (thisType == Types::Obstacles::FireballBoss)
 	{
 		setRadius(150);
@@ -28,6 +30,7 @@ void Fireball::update(Time dt)
 {
 	float time = dt.asMilliseconds();
 
+	// Fireball boss corrects itself to stay in the center
 	if (type == Types::Obstacles::FireballBoss)
 	{
 		if (position.y < 250.f)
@@ -46,30 +49,15 @@ void Fireball::update(Time dt)
 void Fireball::render(RenderWindow* handle, Vector2f scale)
 {
 	Obstacle::render(handle, scale);
-
-	/*
-	
-	handle->draw(sprite);
-
-
-	RectangleShape healthBar(Vector2f(max(0.f, 2 * radius*health / initHealth), radius / 10));
-	healthBar.setPosition(Vector2f(position.x - radius, position.y - 1.2*radius));
-	healthBar.setFillColor(Color(100, 255, 100));
-	handle->draw(healthBar);*/
 }
 
-void Fireball::processInput(Keyboard::Key, bool isPressed)
-{
-
-}
-
-void Fireball::processInput(Vector2i pos, bool isPressed)
-{
-
-}
 
 void Fireball::setRadius(int newRadius)
 {
+	// Unlike other obstacles, fireballs change size upon splitting
+	// Therefore, its sprite and origin need to be rescaled
+	// For smooth image scaling, fireballs with radius greater than 37.5 use
+	// Boss sprite, all others use normal sprite
 	radius = newRadius;
 	sprite.setOrigin(radius, radius);
 	if (radius > 37.5)
@@ -90,12 +78,15 @@ void Fireball::doCollision(Player* player)
 void Fireball::die()
 {
 	Obstacle::die();
+	
+	// Fireballs with radius at least 35 split into smaller fireballs
 	if (radius >= 35)
 	{
-		addToRemoveList();
+		addToRemoveList(); // Splitter fireballs don't fall when killed
 		for (int i = 0; i < 3; i++)
 		{
 			Fireball* fireball;
+			// To make sure the right texture is being used based on size (see setRadius)
 			if (radius > 50) // new fireball radius > 37.5
 			{
 				fireball = new Fireball(Types::Obstacles::Fireball, texture, splitTexture, scene);
@@ -104,6 +95,7 @@ void Fireball::die()
 			{
 				fireball = new Fireball(Types::Obstacles::Fireball, splitTexture, splitTexture, scene);
 			}
+			// New fireballs have about 1/3 the stats of the parent fireball, but move faster, and 75% radius
 			fireball->setPosition(Vector2f(position.x, position.y + min(2.1*radius, 100.0)*(i - 1)));
 			fireball->setStats((-1.2f*velocity.x + 20 * (i % 2)) / 70.f, initHealth*0.34f / 100.f,
 				damage*0.32f / 70.f, fade, regen);
@@ -116,13 +108,14 @@ void Fireball::die()
 
 void Fireball::burn(float time, float damage)
 {
-	// do nothing
+	// do nothing, immune
 }
 
 void Fireball::setStats(float speed, float newHealth, float newDamage, bool fades, bool regens)
 {
 	Obstacle::setStats(speed, newHealth, newDamage, fades, regens);
 
+	// adjusts fireball stats
 	score = 20 * sqrt(speed*newHealth*newDamage);
 	if (fades)
 	{

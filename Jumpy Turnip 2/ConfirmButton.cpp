@@ -5,9 +5,12 @@
 ConfirmButton::ConfirmButton(MessagePanel* panel, Types::Confirm thisConfirm, TextureManager* manager, Vector2f topLeftCoord, Vector2f bottomRightCoord) :
 	ButtonObject(NULL, manager, topLeftCoord, bottomRightCoord)
 {
+	// Confirm button is specifically for confirmation of message panels
 	confirm = thisConfirm;
 	messagePanel = panel;
 
+	// Confirm button for picking levels, have slightly different sizes and so texture
+	// is loaded slightly differently
 	if (thisConfirm == Types::Confirm::Easy ||
 		thisConfirm == Types::Confirm::Normal ||
 		thisConfirm == Types::Confirm::Hard ||
@@ -32,5 +35,6 @@ ConfirmButton::~ConfirmButton()
 
 void ConfirmButton::doButtonAction()
 {
+	// Sends confirmation status to the place containing the button
 	messagePanel->doAction(confirm);
 }

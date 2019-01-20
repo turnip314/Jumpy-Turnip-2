@@ -17,6 +17,8 @@ void Coin::update(Time dt)
 	float time = dt.asSeconds();
 	phaseTimer -= time;
 
+	// Coin image is switched to one in a different period of rotation every
+	// "phase" to make it look like it's spinning
 	if (phaseTimer <= 0)
 	{
 		phase++;
@@ -26,6 +28,7 @@ void Coin::update(Time dt)
 		sprite.setTextureRect(sf::IntRect(30*coinPhase, 0, 30, 30));
 	}
 
+	// Disappears after 25 phases
 	if (phase >= 25)
 	{
 		addToRemoveList();

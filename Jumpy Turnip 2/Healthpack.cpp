@@ -21,6 +21,8 @@ void Healthpack::update(Time dt)
 	{
 		addToRemoveList();
 	}
+
+	// Healthpacks "expand then fade away"
 	sprite.setScale(1.8 - lifespan / 2.f, 1.8 - lifespan / 2.f);
 	sprite.setColor(Color(255, 255, 255, 128 * lifespan));
 }

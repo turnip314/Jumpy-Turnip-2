@@ -9,6 +9,8 @@ public:
 	Entity(Types::Entities thisType, Texture* texture, GameScene* thisScene);
 	~Entity();
 
+	// Inhereted and overidden from base class
+	// Most of these will be overidden by subclasses
 	virtual void update(Time dt) = 0;
 	virtual void render(RenderWindow* handle, Vector2f scale) = 0;
 	virtual void processInput(Keyboard::Key, bool isPressed) = 0;

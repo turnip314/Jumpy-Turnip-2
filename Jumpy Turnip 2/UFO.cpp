@@ -14,6 +14,7 @@ UFO::~UFO()
 
 void UFO::doCollision(Player* player)
 {
+	// UFO paralyzes player upon collision
 	player->setParalysis();
 }
 

@@ -13,12 +13,15 @@ PlayerButton::PlayerButton(Game* thisGame, TextureManager* manager, Vector2f top
 
 PlayerButton::~PlayerButton()
 {
+
 }
 
 void PlayerButton::render(RenderWindow* handle, Vector2f scale)
 {
 	ButtonObject::render(handle, scale);
 
+	// Scales player sprite along with the scaled button sprite when mouse hovers
+	// over button
 	if (hover || (game->getCurSelection() == playerType && playerType != Types::Players::PlayersEND))
 	{
 		handle->draw(scaledSprite);
@@ -28,6 +31,7 @@ void PlayerButton::render(RenderWindow* handle, Vector2f scale)
 		handle->draw(sprite);
 	}
 
+	// Displays name of turnip that the mouse is hovering over
 	if ((game->getCurSelection() == Types::Players::PlayersEND && hover) ||
 		((!(game->getCurSelection() == Types::Players::PlayersEND) && game->getCurSelection() == playerType)))
 	{
@@ -41,7 +45,7 @@ void PlayerButton::doButtonAction()
 	{
 		if (teamStatus == locked)
 		{
-			// option to unlock
+			// Option to unlock a new player
 			MessagePanel* confirmPanel = new MessagePanel(MessagePanel::CONFIRMBUTTON, this,
 				game->getCurScene(), textureManager, Vector2f(100, 100));
 			confirmPanel->setMessage("Would you like to unlock this turnip for $500? You currently have $" + to_string(game->getMoney()) + ".");
@@ -53,7 +57,7 @@ void PlayerButton::doButtonAction()
 	}
 	else if (buttonType == Types::Buttons::TeamSlotButton)
 	{
-		// Might be option to unlock new slot
+		// Option to unlock new player slot
 		if (playerType == Types::Players::PlayersEND)
 		{
 			// Buy new slot if enough money
@@ -82,6 +86,9 @@ void PlayerButton::doButtonAction()
 
 void PlayerButton::confirmButtonAction(Types::Confirm confirm)
 {
+	// Confirms the action that the button is designated to do
+	// Player buttons are for buying new players or selecting players
+	// to be swapped in the team
 	if (buttonType == Types::Buttons::PlayerButton)
 	{
 		if (confirm == Types::Confirm::Yes)
@@ -94,6 +101,7 @@ void PlayerButton::confirmButtonAction(Types::Confirm confirm)
 			// do nothing
 		}
 	}
+	// Team buttons are for swapping team positions or buying new team slots
 	else
 	{
 		if (confirm == Types::Confirm::Yes)

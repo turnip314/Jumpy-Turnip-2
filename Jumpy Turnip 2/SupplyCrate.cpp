@@ -17,6 +17,7 @@ SupplyCrate::~SupplyCrate()
 
 void SupplyCrate::update(Time dt)
 {
+	// Falls down slowly (like parachute)
 	float time = dt.asSeconds();
 	velocity.y += 10 * time;
 	if (position.y > 750)
@@ -30,9 +31,12 @@ void SupplyCrate::update(Time dt)
 void SupplyCrate::die()
 {
 	alive = false;
+
+	// Supply crates have 60% chance of dropping health, 40% of dropping gold
 	if (Math::random() < 0.6f)
 	{
 		scene->player->gainHealth(damage);
+		// Paramedics get extra health from supply crates
 		if (scene->player->isParamedic())
 		{
 			scene->player->gainHealth(damage * 0.25);

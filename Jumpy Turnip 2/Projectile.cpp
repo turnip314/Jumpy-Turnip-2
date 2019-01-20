@@ -11,8 +11,8 @@ Projectile::Projectile(Texture* texture, GameScene* thisScene, Vector2f pos)
 	position = pos;
 	scene = thisScene;
 
-	// Testing stage
-	damage = 50;
+	// Default values
+	damage = 0;
 	pierce = 1;
 }
 
@@ -23,8 +23,8 @@ Projectile::Projectile(Color newColor, GameScene* thisScene, Vector2f pos)
 	position = pos;
 	scene = thisScene;
 
-	// Testing stage
-	damage = 50;
+	// Default values
+	damage = 0;
 	pierce = 1;
 
 	color = newColor;
@@ -36,6 +36,8 @@ Projectile::~Projectile()
 
 Projectile::Projectile(const Projectile &p2)
 {
+	// When a proejectile splits, it takes all properties of old projectile
+	// unless adjusted afterwards
 	color = p2.color;
 	sprite = p2.sprite;
 	hasTexture = p2.hasTexture;
@@ -50,6 +52,7 @@ Projectile::Projectile(const Projectile &p2)
 	damage = p2.damage;
 	lifespan = p2.lifespan;
 
+	// Split is only retained if continuous split, and is less effective each time
 	if (p2.continuousSplit)
 	{
 		splitNum = p2.splitNum - 1;
@@ -57,6 +60,7 @@ Projectile::Projectile(const Projectile &p2)
 	continuousSplit = p2.continuousSplit;
 	follow = p2.follow;
 
+	// Has a chance to lose effects based on resilience factor
 	resilience = p2.resilience;
 	if (Math::random() < resilience)
 	{
@@ -97,6 +101,8 @@ void Projectile::update(Time dt)
 {
 	float time = dt.asSeconds();
 
+	// Falls down, unless it's following mouse input in which case it accelerates
+	// towards mouse
 	if (!follow)
 	{
 		velocity.y += 1200.f * time;
@@ -107,7 +113,7 @@ void Projectile::update(Time dt)
 		velocity.y += 10 * time * (lastMousePos.y - position.y);
 	}
 
-
+	// If lifespan is over, remove it
 	lifespan -= time;
 	if (lifespan <= 0 || position.x > 1300 || position.y > 1200 || position.x < -20)
 	{
@@ -158,6 +164,8 @@ void Projectile::setStats(Vector2f newVelocity, int newRadius, int newDamage, in
 	speed = Math::magnitude(velocity);
 	radius = newRadius;
 	damage = newDamage;
+
+	// If projectile splits, the pierce is converted to split
 	if (splitNum >= 2)
 	{
 		splitNum += newPierce - 1;
@@ -293,7 +301,8 @@ void Projectile::doDamage(Obstacle* obstacle)
 	}
 	if (pierce > 0)
 	{
-		damage *= resilience;
+		// Clouds take less damage but don't take away pierce
+		// Also forces projectile to lose effectiveness (clear effects)
 		if (obstacle->getType() == Types::Obstacles::Cloud)
 		{
 			clearEffects(obstacle);
@@ -305,6 +314,7 @@ void Projectile::doDamage(Obstacle* obstacle)
 			obstacle->setHealth(obstacle->getHealth() - damage);
 		}
 
+		// Chance of releasing gold for some projectiles
 		if (Math::random() < goldReleaseChance)
 		{
 			scene->addMoney(5, position);
@@ -356,11 +366,15 @@ void Projectile::doDamage(Obstacle* obstacle)
 				velocity.y = -velocity.y;
 			}
 		}
+
+		// damage decreases by resilience factor
+		damage *= resilience;
 	}
 	
 	if (pierce == 0)
 	{
-		// For projectiles that split
+		// For projectiles that split, imitate parent projectile
+		// But stats decrease by resilience
 		for (int i = 0; i < splitNum; i++)
 		{
 			if (radius >= 1)
@@ -383,6 +397,7 @@ void Projectile::doDamage(Obstacle* obstacle)
 
 void Projectile::doNuclearDamage(Obstacle* obstacle, Time dt)
 {
+	// Area damage around projectile that decreases with distance
 	if (nuclear)
 	{
 		float dist = Math::distance(position, obstacle->getPosition());
@@ -405,9 +420,11 @@ void Projectile::addToRemoveList()
 
 void Projectile::clearEffects(Obstacle* obstacle)
 {
+	// For cloud collisions, has chance of losing all effects and having decreased damage
+	// and radius
 	if (!cloudImmunity)
 	{
-		if (Math::random() < 0.8)
+		if (Math::random() < 0.75f)
 		{
 			follow = false;
 			stun = false;

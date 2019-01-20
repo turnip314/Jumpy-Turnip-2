@@ -21,7 +21,7 @@ void Flappy::update(Time dt)
 		// r is random value 0.0 to 1.0
 		// If bird is too low, will definitely jump
 		// Otherwise, will jump when it reaches given random velocity, unless
-		// it's already too high up
+		// it's already too high up (y pos within 40 of top of screen)
 		float r = Math::random();
 		if (position.y > 725)
 		{
@@ -42,6 +42,7 @@ void Flappy::update(Time dt)
 
 void Flappy::render(RenderWindow* handle, Vector2f scale)
 {
+	// Rotates sprite based on which way it's moving
 	float angle = atan2(velocity.y, velocity.x) + Math::pi;
 	sprite.setRotation(angle * 180.f / Math::pi);
 	Obstacle::render(handle, scale);

@@ -6,14 +6,17 @@
 
 MessagePanel::MessagePanel(int thisType, Scene* thisScene, TextureManager* manager, Vector2f topLeftCoord)
 {
+	// Constructor for messagepanel not associated with a button
 	type = thisType;
 	scene = thisScene;
 	textureManager = manager;
 	topLeft = topLeftCoord;
 
+	// adjust position of all buttons based on panel position
 	adjustPosition();
 	initializeButtons();
 
+	// Main texture for panel
 	Texture* backgroundTexture = manager->getTexture(Textures::MessagePanel);
 	backgroundImage.setTexture(*backgroundTexture, true);
 	backgroundImage.setPosition(topLeftCoord);
@@ -21,16 +24,19 @@ MessagePanel::MessagePanel(int thisType, Scene* thisScene, TextureManager* manag
 
 MessagePanel::MessagePanel(int thisType, ButtonObject* thisButton, Scene* thisScene, TextureManager* manager, Vector2f topLeftCoord)
 {
+	// Constructor for messagepanel associated with a button
 	type = thisType;
 	button = thisButton;
 	scene = thisScene;
 	textureManager = manager;
 	topLeft = topLeftCoord;
 
+	// Main texture for panel
 	Texture* backgroundTexture = manager->getTexture(Textures::MessagePanel);
 	backgroundImage.setTexture(*backgroundTexture, true);
 	backgroundImage.setPosition(topLeftCoord);
 
+	// adjust position of all buttons based on panel position
 	adjustPosition();
 	initializeButtons();
 }
@@ -124,6 +130,10 @@ void MessagePanel::adjustPosition()
 
 void MessagePanel::initializeButtons()
 {
+	// Different confirm button types will have different buttons and button locations
+	// This method handles that by checking panel type
+
+	// OK and CANCEL buttons have only one button that usually do nothing but close the panel
 	if (type == MessagePanel::OK)
 	{
 		ConfirmButton* OKButton = new ConfirmButton(this, Types::Confirm::OK, textureManager, OKPos,
@@ -140,6 +150,8 @@ void MessagePanel::initializeButtons()
 		CANCELButton->centerText();
 		buttons.push_back(CANCELButton);
 	}
+
+	// Confirm panel will have a yes or no option, with yes doing an action and no doing nothing
 	else if (type == MessagePanel::CONFIRMBUTTON)
 	{
 		ConfirmButton* yesButton = new ConfirmButton(this, Types::Confirm::Yes, textureManager, YesPos,
@@ -153,6 +165,8 @@ void MessagePanel::initializeButtons()
 		buttons.push_back(yesButton);
 		buttons.push_back(noButton);
 	}
+
+	// For level selection panels, has a button for each difficulty, a high scores button, and cancel
 	else if (type == MessagePanel::EASYMEDHARD)
 	{
 		ConfirmButton* easyButton = new ConfirmButton(this, Types::Confirm::Easy, textureManager, EasyPos,
@@ -191,6 +205,8 @@ void MessagePanel::initializeButtons()
 		highScoresButton->centerText();
 		buttons.push_back(highScoresButton);
 	}
+
+	// For pause panel, a resume and leave game button
 	else if (type == MessagePanel::PAUSE)
 	{
 		ConfirmButton* resumeButton = new ConfirmButton(this, Types::Confirm::Resume, textureManager, YesPos,
@@ -202,14 +218,16 @@ void MessagePanel::initializeButtons()
 		buttons.push_back(resumeButton);
 		buttons.push_back(leaveButton);
 	}
+
 	else
 	{
-		cout << "Confirm Button not yet implemeted";
+		throw runtime_error("Not yet implemented");
 	}
 }
 
 void MessagePanel::skipLine(int lineSize)
 {
+	// Adds empty line of text to message panel
 	Text newLine;
 	newLine.setCharacterSize(lineSize);
 	textLines.push_back(newLine);
@@ -217,6 +235,7 @@ void MessagePanel::skipLine(int lineSize)
 
 void MessagePanel::setMessage(string text)
 {
+	// Adds a line of text to the message panel
 	vector<string> lines = TextBox::getTextLines(size, textureManager->getFont(fontID), fontSize, text);
 
 	for (int i = 0; i < lines.size(); i++)

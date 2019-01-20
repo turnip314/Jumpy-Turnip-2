@@ -8,7 +8,8 @@ LevelButton::LevelButton(int thisLevel, LevelScores thisStat, Game* thisGame, Te
 	levelStat = thisStat;
 	level = thisLevel;
 
-	// Sets button texture
+	// Sets button texture for regular and hover button size based on if level is locked, unlocked,
+	// or beaten on every difficulty
 	if (level < game->freeplayNoLoopLevel)
 	{
 		if (thisStat.levelStatus == 0)
@@ -30,6 +31,7 @@ LevelButton::LevelButton(int thisLevel, LevelScores thisStat, Game* thisGame, Te
 		setText(Fonts::Atarian, 100, "_" + to_string(thisLevel + 1));
 		centerText();
 	}
+	// Freeplay levels have slightly different button dimensions and text
 	else
 	{
 		if (thisStat.levelStatus == 0)
@@ -82,6 +84,8 @@ void LevelButton::render(RenderWindow* handle, Vector2f scale)
 {
 	ButtonObject::render(handle, scale);
 
+	// Draws a bronze, silver, or gold medal depending on if easy, medium, or hard
+	// is beaten
 	if (level < game->freeplayNoLoopLevel)
 	{
 		int circleRadius = 15;
@@ -113,7 +117,7 @@ void LevelButton::doButtonAction()
 {
 	if (levelStat.levelStatus == 0)
 	{
-		// locked
+		// In case level is locked
 		MessagePanel* confirmPanel = new MessagePanel(MessagePanel::OK, this, game->getCurScene(),
 			textureManager, Vector2f(270, 100));
 		confirmPanel->setMessage("You haven't unlocked this level yet. Beat earlier levels first to unlock this level.");
@@ -121,6 +125,7 @@ void LevelButton::doButtonAction()
 	}
 	else
 	{
+		// Opens a level selection message panel
 		MessagePanel* levelPanel = new MessagePanel(MessagePanel::EASYMEDHARD, this, game->getCurScene(),
 			textureManager, Vector2f(270, 100));
 		levelPanel->setMessage("Select a difficulty");
@@ -130,6 +135,8 @@ void LevelButton::doButtonAction()
 
 void LevelButton::confirmButtonAction(Types::Confirm confirm)
 {
+	// If level status >= level which user wants to play,
+	// then start that level. Otherwise give error message of level locked
 	if (confirm == Types::Confirm::Easy)
 	{
 		game->startNewGame(level, 1);
@@ -179,6 +186,7 @@ void LevelButton::confirmButtonAction(Types::Confirm confirm)
 			game->startNewGame(level, 4);
 		}
 	}
+	// Opens high score panel that displays high score for each difficulty
 	else if (confirm == Types::Confirm::HighScores)
 	{
 		MessagePanel* highScoresPanel = new MessagePanel(MessagePanel::OK, this, game->getCurScene(),

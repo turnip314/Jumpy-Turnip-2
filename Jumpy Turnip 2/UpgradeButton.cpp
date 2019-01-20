@@ -17,6 +17,10 @@ UpgradeButton::~UpgradeButton()
 
 void UpgradeButton::doButtonAction()
 {
+	// If upgrade button is clicked, do its corresponding action
+	// If unlocked is locked, will tell player to unlock it
+	// If unlocked, will give player option to buy (whether they can afford it is checked in confirm)
+	// If bought, will describe upgrade and say it's already bought
 	if (upgradeStatus == locked)
 	{
 		MessagePanel* confirmPanel = new MessagePanel(MessagePanel::OK, this, game->getCurScene(), textureManager, Vector2f(350, 95));
@@ -47,6 +51,9 @@ void UpgradeButton::doButtonAction()
 
 void UpgradeButton::confirmButtonAction(Types::Confirm confirm)
 {
+	// Confirming to buy an upgrade
+	// Will check if player can afford it here, and upgrade it if yes
+	// Otherwise, give a cannot afford warning
 	if (confirm == Types::Confirm::Yes)
 	{
 		if (game->spendMoney(upgradeCost))
@@ -61,14 +68,12 @@ void UpgradeButton::confirmButtonAction(Types::Confirm confirm)
 			game->getCurScene()->addPanel(confirmPanel);
 		}
 	}
-	else
-	{
-		// do nothing
-	}
 }
 
 void UpgradeButton::setUpgradeStatus(int newStatus, int cost)
 {
+	// Tells the upgrade button if its corresponding upgrade is unlocked/bought/etc and 
+	// its upgrade cost, called once upon initialization
 	upgradeStatus = newStatus;
 	upgradeCost = cost;
 
@@ -91,6 +96,7 @@ void UpgradeButton::setUpgradeStatus(int newStatus, int cost)
 
 void UpgradeButton::setText(Fonts::ID fontID, int fontSize, string text, string confirm)
 {
+	// Sets text of button, like button object, but slightly different style (has confirm text)
 	ButtonObject::setText(fontID, fontSize, text);
 	for (int i = 0; i < textLines.size(); i++)
 	{
