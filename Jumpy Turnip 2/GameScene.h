@@ -72,6 +72,7 @@ public:
 
 	void addObstacleToChoose(ObstacleStats stat);
 	void addObstacle(ObstacleStats stat);
+	void autoGenerateWave(int range);
 	void autoGenerateObstacle();
 	void pushObstacle(Obstacle* obstacle);
 

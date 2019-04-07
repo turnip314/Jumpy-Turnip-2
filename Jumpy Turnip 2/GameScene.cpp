@@ -18,6 +18,7 @@
 
 GameScene::GameScene(Game* thisGame, TextureManager* manager)
 {
+
 	game = thisGame;
 	textureManager = manager;
 	loop = true;
@@ -747,6 +748,13 @@ void GameScene::addObstacleToChoose(ObstacleStats stat)
 	obstacleChooseList.push_back(stat);
 	chooseListLength++;
 	autoGenWeight += chooseListLength;
+}
+
+void GameScene::autoGenerateWave(int range)
+{
+	int waveNum = rand() % range;
+
+	//unfinished
 }
 
 void GameScene::autoGenerateObstacle()
