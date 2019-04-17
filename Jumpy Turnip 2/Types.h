@@ -24,7 +24,7 @@ namespace Types
 	enum Tutorials {Intro1, Intro2, Intro3, Intro4, FireballIntro, LoopIntro, EndlessIntro,
 		FlappyIntro, RegenIntro, FadeIntro, FlappyWarning, FireballBossWarning, CloudIntro,
 		PlaneIntro, UFOIntro, FireballDodgeWarning, MigratingBirdsWarning, FinalLevelWarning,
-		FreeplayLevelIntro, UpgradesIntro, TeamIntro, TeamPlayIntro, AbilityIntro, TutorialsEND};
+		FreeplayLevelIntro, UpgradesIntro, TeamIntro, TeamPlayIntro, AbilityIntro, ThanosEasterEgg, TutorialsEND};
 	enum Sizes{Small, Medium, MediumScaled, Big, BigScaled};
 }
 

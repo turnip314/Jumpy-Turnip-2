@@ -17,10 +17,10 @@
 
 using namespace sf;
 
-float Game::widthRatio = VideoMode::getDesktopMode().width / 1920.0;
-float Game::heightRatio = VideoMode::getDesktopMode().height / 1080.0;
+float Game::widthRatio = VideoMode::getDesktopMode().width / 1920.0f;
+float Game::heightRatio = VideoMode::getDesktopMode().height / 1080.0f;
 
-Game::Game(TextureManager &textureManager) : window(VideoMode(1280 * widthRatio, 720 * heightRatio), "RPG Game")
+Game::Game(TextureManager &textureManager) : window(VideoMode(1280 * (int) widthRatio, 720 * (int) heightRatio), "RPG Game")
 {
 	// Reads all saved information from fileIO
 	loadLevels();
@@ -51,7 +51,7 @@ Game::Game(TextureManager &textureManager) : window(VideoMode(1280 * widthRatio,
 
 	// Stores image scaling factors in case needed
 	defaultSize = Vector2i(1280, 720);
-	mainSize = Vector2i(1280*Game::getWidthRatio(), 720*Game::getHeightRatio());
+	mainSize = Vector2i(1280*(int)Game::getWidthRatio(), 720*(int)Game::getHeightRatio());
 	clickScaleFactor = Vector2f(Game::getWidthRatio(), Game::getHeightRatio());
 	imageScaleFactor = Vector2f(Game::getWidthRatio(), Game::getHeightRatio());
 
@@ -210,6 +210,10 @@ Textures::ID Game::getPlayerTextureID(Types::Players playerType, Types::Sizes si
 		// placeholder
 		return static_cast<Textures::ID>(Textures::NormieMed + playerType);
 	}
+	else
+	{
+		throw runtime_error("ID does not exist");
+	}
 }
 
 void Game::loadMainMenu()
@@ -217,6 +221,8 @@ void Game::loadMainMenu()
 	// Initializes Main Menu
 	Menu* mainMenu = new Menu(&manager);
 
+	mainMenu->setText("Jumpy Turnip", Vector2f(525, 180), Fonts::Atarian, 150, Color::White);
+	mainMenu->setText("2", Vector2f(775, 330), Fonts::Atarian, 150, Color::White);
 
 	// The four main buttons on the main menu are initialized here
 
@@ -289,8 +295,8 @@ void Game::openLevelSelection()
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			float xPos = 200 + 180 * (i % 5);
-			float yPos = 150 + 220 * (i / 5);
+			float xPos = 200.f + 180.f * (i % 5);
+			float yPos = 150.f + 220.f * (i / 5);
 			int levelNum = i + 10 * levelPage;
 			LevelButton* lvlButton = new LevelButton(levelNum, levelScores[levelNum], this, &manager,
 				Vector2f(xPos, yPos), Vector2f(xPos + 150, yPos + 150));
@@ -383,8 +389,8 @@ void Game::openUpgradeMenu(Types::Players playerType)
 	// Creates the array of upgrade buttons
 	for (int i = 0; i < 12; i++)
 	{
-		float xPos = 320 + 220 * (i % 4);
-		float yPos = 100 + 200 * (i / 4);
+		float xPos = 320.f + 220.f * (i % 4);
+		float yPos = 100.f + 200.f * (i / 4);
 		UpgradeButton* upgradeButton = new UpgradeButton(playerType, i, this, &manager,
 			Vector2f(xPos, yPos), Vector2f(xPos + 160, yPos + 130));
 		upgradeButton->setUpgradeStatus(playerUpgrades[playerType][i], upgradeCosts[playerType][i]);
@@ -415,6 +421,11 @@ void Game::openUpgradeMenu(Types::Players playerType)
 
 	// Explains how upgrade work for people playing for the first time
 	addTutorialPanel(upgradeMenu, Types::Tutorials::UpgradesIntro);
+
+	if (playerUpgrades[Types::Players::Nature][3] == 2 && playerUpgrades[Types::Players::Nature][7] == 2 && playerUpgrades[Types::Players::Nature][11] == 2)
+	{
+		addTutorialPanel(upgradeMenu, Types::Tutorials::ThanosEasterEgg);
+	}
 
 	scenes.push(upgradeMenu);
 }
@@ -495,7 +506,6 @@ void Game::buyNewSlot()
 	{
 		refreshTeam = true;
 		teamSize++;
-		int newMember;
 		for (int i = 0; i < Types::Players::PlayersEND; i++)
 		{
 			if (teamStatus[i] == 0)
@@ -556,8 +566,8 @@ void Game::openTeamMenu()
 	{
 		// Make eight player buttons, initialize with player use/unlock status
 		Types::Players playerType = static_cast<Types::Players>(i);
-		float xPos = 250 + 200 * (i % 4);
-		float yPos = 50 + 200 * (i / 4);
+		float xPos = 250.f + 200.f * (i % 4);
+		float yPos = 50.f + 200.f * (i / 4);
 		PlayerButton* playerButton = new PlayerButton(this, &manager,
 			Vector2f(xPos, yPos), Vector2f(xPos + 150, yPos + 150));
 		playerButton->initialize(Types::Buttons::PlayerButton, playerType, teamStatus[i]);
@@ -582,8 +592,8 @@ void Game::openTeamMenu()
 		
 		Types::Players playerType = static_cast<Types::Players>(teamMember);
 
-		float xPos = 640 - 75 * (min((int) Types::Players::PlayersEND, (teamSize + 1))) + 150 * (i-1);
-		float yPos = 500;
+		float xPos = 640.f - 75.f * (min((int) Types::Players::PlayersEND, (teamSize + 1))) + 150.f * (i-1);
+		float yPos = 500.f;
 		PlayerButton* teamSlotButton = new PlayerButton(this, &manager,
 			Vector2f(xPos, yPos), Vector2f(xPos + 125, yPos + 125));
 		teamSlotButton->initialize(Types::Buttons::TeamSlotButton, playerType, teamStatus[teamMember]);
@@ -594,8 +604,8 @@ void Game::openTeamMenu()
 	// new slots until you have a slot for each turnip. Draw a lock button to show that
 	if (teamSize < Types::Players::PlayersEND)
 	{
-		float xPos = 640 - 75 * (min((int)Types::Players::PlayersEND, (teamSize + 1))) + 150 * teamSize;
-		float yPos = 500;
+		float xPos = 640.f - 75.f * (min((int)Types::Players::PlayersEND, (teamSize + 1))) + 150.f * teamSize;
+		float yPos = 500.f;
 		PlayerButton* teamSlotButton = new PlayerButton(this, &manager,
 			Vector2f(xPos, yPos), Vector2f(xPos + 125, yPos + 125));
 		teamSlotButton->initialize(Types::Buttons::TeamSlotButton, Types::Players::PlayersEND, -1);
@@ -850,7 +860,7 @@ void Game::addTutorialPanel(Scene* scene, Types::Tutorials tutorialType)
 	if (!tutorialReadStatus[tutorialType])
 	{
 		string message = tutorialMessages[tutorialType];
-		MessagePanel* tutorialPanel = new MessagePanel(MessagePanel::OK, scene, &manager, Vector2f(200, 100));
+		MessagePanel* tutorialPanel = new MessagePanel(MessagePanel::OK, scene, &manager, Vector2f(300, 100));
 		tutorialPanel->setMessage(message);
 		scene->addPanel(tutorialPanel);
 		tutorialReadStatus[tutorialType] = true;
@@ -879,7 +889,7 @@ void Game::loadLevels()
 	lvlFile >> numLevels;
 
 	// Loops through each level
-	for (unsigned i = 0; i < numLevels; i++)
+	for (int i = 0; i < numLevels; i++)
 	{
 		// For each level, file will specify game objective,
 		// how many objects to add, and objective score
@@ -895,7 +905,7 @@ void Game::loadLevels()
 
 		// Loops through number of objectives and stores of stat of each
 		// Speed, health, and damage are stored as fractions
-		for (unsigned i = 0; i < numObstacles; i++)
+		for (int i = 0; i < numObstacles; i++)
 		{
 			int stats[12];
 			for (unsigned j = 0; j < 12; j++)
@@ -1322,13 +1332,13 @@ void Game::updateXp(vector<Player*> players, float factor)
 	// xp factor. Adds this to the status of that player to be saved in progress
 	// If the player has enough xp to level up (quadratic function of level), 
 	// perform the level up until the player can no longer level up
-	for (int i = 0; i < players.size(); i++)
+	for (unsigned i = 0; i < players.size(); i++)
 	{
 		Types::Players playerType = players.at(i)->getType();
-		playerRanks[playerType].xp += players.at(i)->getXp() * factor;
+		playerRanks[playerType].xp += (int) (players.at(i)->getXp() * factor);
 		while (playerRanks[playerType].xp > 50 + 10 * pow(playerRanks[playerType].rank, 2))
 		{
-			playerRanks[playerType].xp -= 50 + 10 * pow(playerRanks[playerType].rank, 2);
+			playerRanks[playerType].xp -= (int) (50 + 10 * pow(playerRanks[playerType].rank, 2));
 			playerRanks[playerType].rank++;
 			
 			// check if important rank

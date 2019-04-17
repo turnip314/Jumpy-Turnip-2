@@ -98,11 +98,11 @@ void UpgradeButton::setText(Fonts::ID fontID, int fontSize, string text, string 
 {
 	// Sets text of button, like button object, but slightly different style (has confirm text)
 	ButtonObject::setText(fontID, fontSize, text);
-	for (int i = 0; i < textLines.size(); i++)
+	for (unsigned i = 0; i < textLines.size(); i++)
 	{
 		textLines[i].setFillColor(Color(0, 0, 0, 192));
 	}
-	for (int i = 0; i < scaledTextLines.size(); i++)
+	for (unsigned i = 0; i < scaledTextLines.size(); i++)
 	{
 		scaledTextLines[i].setFillColor(Color(0, 0, 0, 192));
 	}

@@ -753,8 +753,6 @@ void GameScene::addObstacleToChoose(ObstacleStats stat)
 void GameScene::autoGenerateWave(int range)
 {
 	int waveNum = rand() % range;
-
-	//unfinished
 }
 
 void GameScene::autoGenerateObstacle()

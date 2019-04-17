@@ -712,6 +712,20 @@ void Player::useAbility()
 	}
 	else if (type == Types::Players::Nature)
 	{
+		// Hidden "thanos" ability
+		// Kills half the things on screen
+		if (upgrades[3] == 2 && upgrades[7] == 2 && upgrades[11] == 2)
+		{
+			for (int i = 0; i < scene->obstacles.size(); i++)
+			{
+				Obstacle* obstacle = scene->obstacles.at(i);
+				if (Math::random() < 0.5f && obstacle->getType() != Types::Obstacles::MrGoose)
+				{
+					obstacle->setHealth(-1);
+				}
+			}
+		}
+
 		// Blows back all obstacles
 		if (upgrades[3] == 2)
 		{
