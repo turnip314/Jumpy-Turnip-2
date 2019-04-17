@@ -62,6 +62,8 @@ with it self to reset it back to its starting position.
 #
 One of your turnips now has an activated ability! When the ability bar fills up, press D to activate the ability. Abilities are great for use in emergency situations.
 #
+You have fully unleashed the power of nature. May the objects in the sky fear your abilities. - Thanos
+#
 @
 Your turnip has unlocked the abilities auto-shoot and auto-jump. Press A and J to activate. Auto-shoot allows your turnip to shoot without you clicking. However, it has 40% longer reload time. Auto-jump allows your turnip to hop around the same place without your control.
 #
