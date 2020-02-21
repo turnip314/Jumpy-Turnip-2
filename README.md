@@ -1,5 +1,5 @@
 # Jumpy-Turnip-2
-Jumpy Tunrip 2 is a simple third-person shooter game with flappy bird movement mechanics, 30 regular levels, 4 freeplay levels, 8 player options, and 96 different upgrades.
+Jumpy Turnip 2 is a simple third-person shooter game with flappy bird movement mechanics, 30 regular levels, 4 freeplay levels, 8 player options, and 96 different upgrades.
 
 The game is programmed in C++ and SFML by Andrew Luo (Jihanjie Luo), who wrote this as a first-year computer science student at the University of Waterloo. The graphics and images were made by Kayla Estacio.
 
